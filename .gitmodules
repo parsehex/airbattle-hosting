@@ -1,0 +1,9 @@
+[submodule "ab-bot"]
+	path = ab-bot
+	url = https://github.com/parsehex/ab-bot
+[submodule "ab-server"]
+	path = ab-server
+	url = https://github.com/parsehex/ab-server
+[submodule "ab-frontend"]
+	path = ab-frontend
+	url = https://github.com/parsehex/ab-frontend
