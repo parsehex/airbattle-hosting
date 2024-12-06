@@ -1,6 +1,10 @@
-# ab-docker
+# airbattle-docker
 
-This is a repo to be able to easily run a modified instance of the game AIRMASH.
+This is a repo to be able to easily run an instance of the game AIRMASH. It uses the following repos:
+
+- [ab-frontend](https://github.com/parsehex/ab-frontend) - fork of [airmash-frontend](https://github.com/airmash-refugees/airmash-frontend)
+- [ab-server](https://github.com/parsehex/ab-server) - fork of [ab-server](https://github.com/wight-airmash/ab-server)
+- [ab-bot](https://github.com/parsehex/ab-bot) - fork of [AB-bot](https://github.com/spatiebot/ab-bot)
 
 ## Setup
 
