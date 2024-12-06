@@ -131,3 +131,4 @@ dist
 
 .env.bots
 .env.server
+start-bots.sh
