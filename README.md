@@ -4,6 +4,8 @@ This is a repo to be able to easily run a modified instance of the game AIRMASH.
 
 ## Setup
 
+<!-- requirements: nvm, node 12 -->
+
 1. Clone this repo + submodules and cd into it
 
 ```bash
@@ -11,11 +13,13 @@ git clone https://github.com/parsehex/ab-docker --recursive-submodules
 cd ab-docker
 ```
 
-3. Copy the environment files and make any necessary changes
+3. Copy the environment files, `games.json` and `start-bots.sh` and make any necessary changes
 
 ```bash
 cp .env.server.example .env.server
 cp .env.bots.example .env.bots
+cp games.json.example games.json
+cp start-bots.sh.example start-bots.sh
 ```
 
 4. Build the docker image
