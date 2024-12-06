@@ -13,7 +13,7 @@ This is a repo to be able to easily run an instance of the game AIRMASH. It uses
 1. Clone this repo + submodules and cd into it
 
 ```bash
-git clone https://github.com/parsehex/airbattle-docker --recursive-submodules
+git clone https://github.com/parsehex/airbattle-docker --recursive
 cd ab-docker
 ```
 
@@ -26,7 +26,7 @@ cp games.json.example games.json
 cp start-bots.sh.example start-bots.sh
 ```
 
-Make sure to check and edit the files as needed.
+Make sure to check and edit the files as needed (at least `.env.server`).
 
 3. Build the docker image
 
@@ -54,4 +54,12 @@ After you change the code or environment file(s), stop the server and rebuild th
 docker-compose down
 docker-compose build
 docker-compose up
+```
+
+### Updating
+
+To update the game server, frontend, or bot, you can run the following commands:
+
+```bash
+git pull --recurse-submodules
 ```
