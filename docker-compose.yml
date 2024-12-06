@@ -32,6 +32,8 @@ services:
     networks:
       frontend:
         ipv4_address: 172.20.0.5
+    volumes:
+      - ./logs:/app/logs
 
   frontend:
     build:
