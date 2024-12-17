@@ -4,6 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "Airbattle Hosting",
   description: "",
+  base: process.env.NODE_ENV === 'production' ? '/airbattle-hosting/' : '/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
