@@ -133,3 +133,6 @@ dist
 .env.server
 start-bots.sh
 games.json
+
+***/.vitepress/dist
+***/.vitepress/cache
