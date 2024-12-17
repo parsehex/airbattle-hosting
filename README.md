@@ -35,3 +35,13 @@ cp games.json.example games.json
 ```
 
 Edit the files as needed.
+
+## Thoughts
+
+- Only have 1 copy of config files (in the repo that uses i), symlink to them in root during setup
+- Provide definitions for server/etc options within JSON files
+  - Organize by type (server, frontend, bot)
+  - Include name, description, config location, key name, value type, value options
+    - Value options can be a list, or an object with min/max and/or default keys
+  - Load the files to display in the docs
+  - Use the files to populate a CLI tool to change config options

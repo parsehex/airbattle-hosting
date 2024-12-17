@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Airbattle Hosting"
-  tagline: Setup your own AIRMASH / Airbattle game server
+  tagline: Run AIRMASH / Airbattle on your own PC or server
   actions:
     - theme: brand
       text: Getting Started
