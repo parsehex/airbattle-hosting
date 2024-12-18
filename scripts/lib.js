@@ -14,6 +14,14 @@ export async function symlink(target, link) {
 	});
 }
 
+export async function fileExists(file) {
+	return new Promise((resolve) => {
+		fs.access(file, fs.constants.F_OK, (err) => {
+			resolve(!err);
+		});
+	});
+}
+
 export async function copy(source, dest) {
 	return new Promise((resolve, reject) => {
 		fs.copyFile(source, dest, (err) => {

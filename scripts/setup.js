@@ -1,4 +1,4 @@
-import { runCommand, runCommandOutput, symlink, copy } from './lib.js';
+import { runCommand, runCommandOutput, symlink, copy, fileExists } from './lib.js';
 import path from 'path';
 import { fileURLToPath } from 'node:url'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -12,10 +12,17 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 		await runCommand('git', ['pull', '--recurse-submodules'], { cwd: root });
 
-		await copy(path.join(root, 'ab-frontend/games.json.example'), path.join(root, 'ab-frontend/games.json'));
-		await symlink(path.join(root, 'ab-frontend/games.json'), path.join(root, 'games.json'));
-		await copy(path.join(root, 'ab-server/.env.example'), path.join(root, 'ab-server/.env'));
-		await symlink(path.join(root, 'ab-server/.env'), path.join(root, '.env.server'));
+		const gamesJsonExists = await fileExists(path.join(root, 'games.json'));
+		if (!gamesJsonExists) {
+			await copy(path.join(root, 'ab-frontend/games.json.example'), path.join(root, 'ab-frontend/games.json'));
+			await symlink(path.join(root, 'ab-frontend/games.json'), path.join(root, 'games.json'));
+		}
+
+		const envExists = await fileExists(path.join(root, '.env'));
+		if (!envExists) {
+			await copy(path.join(root, 'ab-server/.env.example'), path.join(root, 'ab-server/.env'));
+			await symlink(path.join(root, 'ab-server/.env'), path.join(root, '.env.server'));
+		}
 
 		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-frontend') });
 		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-frontend') });
