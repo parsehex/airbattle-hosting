@@ -37,6 +37,11 @@ export async function copy(source, dest) {
 export async function runCommand(command, args, options = {}) {
   console.log(`Running: ${command} ${args.join(' ')}`);
 
+	if (process.platform === 'win32' && !command.endsWith('.cmd')) {
+		args = ['/c', command, ...args];
+		command = 'cmd';
+	}
+
   return new Promise((resolve, reject) => {
     const proc = spawn(command, args, {
       stdio: 'inherit',
