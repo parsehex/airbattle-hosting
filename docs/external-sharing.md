@@ -14,4 +14,7 @@ This guide is a work in progress showing how this can be done.
 ```bash
 ngrok http 3501
 ```
-4. Look for the `Forwarding` line in the output. You'll see a URL like `https://bb8f-2603-6011-6b40-20-2c82-f0a7-fcb2-7e35.ngrok-free.app`. This is the URL that you can share with others to join your server.
+4. Look for the `Forwarding` line in the output. You'll see a URL like below. This is the URL that you can share with others to join your server.
+```
+https://bb8f-2603-6011-6b40-20-2c82-f0a7-fcb2-7e35.ngrok-free.app
+```
