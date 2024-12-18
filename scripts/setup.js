@@ -1,4 +1,4 @@
-import { runCommand, runCommandOutput, symlink, move } from './lib.js';
+import { runCommand, runCommandOutput, symlink, copy } from './lib.js';
 import path from 'path';
 import { fileURLToPath } from 'node:url'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -12,15 +12,17 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 		await runCommand('git', ['pull', '--recurse-submodules'], { cwd: root });
 
-		await move(path.join(root, 'ab-frontend/games.json.example'), path.join(root, 'ab-frontend/games.json'));
+		await copy(path.join(root, 'ab-frontend/games.json.example'), path.join(root, 'ab-frontend/games.json'));
 		await symlink(path.join(root, 'ab-frontend/games.json'), path.join(root, 'games.json'));
-		await move(path.join(root, 'ab-server/.env.example'), path.join(root, 'ab-server/.env'));
+		await copy(path.join(root, 'ab-server/.env.example'), path.join(root, 'ab-server/.env'));
 		await symlink(path.join(root, 'ab-server/.env'), path.join(root, '.env.server'));
 
 		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-frontend') });
 		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-frontend') });
 		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-server') });
 		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-server') });
+
+		await runCommand('nvm', ['use', '22']);
 		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-bot') });
 		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-bot') });
 

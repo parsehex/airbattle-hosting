@@ -14,10 +14,9 @@ export async function symlink(target, link) {
 	});
 }
 
-// function to move
-export async function move(source, dest) {
+export async function copy(source, dest) {
 	return new Promise((resolve, reject) => {
-		fs.rename(source, dest, (err) => {
+		fs.copyFile(source, dest, (err) => {
 			if (err) {
 				reject(err);
 			} else {
