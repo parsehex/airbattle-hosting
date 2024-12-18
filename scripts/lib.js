@@ -16,7 +16,7 @@ export async function symlink(target, link) {
 
 export async function fileExists(file) {
 	return new Promise((resolve) => {
-		fs.access(file, fs.constants.F_OK, (err) => {
+		fs.readFile(file, (err) => {
 			resolve(!err);
 		});
 	});
