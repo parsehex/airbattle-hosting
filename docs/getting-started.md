@@ -4,6 +4,8 @@
 
 # Setting Up Airbattle
 
+(Work in progress)
+
 ## Install NVM / Node.js
 
 First, install NVM if you haven't already. See the instructions for your operating system below:
@@ -25,11 +27,40 @@ nvm install 12
 nvm use 12
 ```
 
-## Clone the Repository
+## Clone the Repository and Setup
 
-Clone this repository and its submodules, then navigate into the directory:
+Clone this repository and its submodules, then navigate into the directory and begin setting up the environment:
 
 ```bash
 git clone --recursive https://github.com/parsehex/airbattle-hosting
 cd airbattle-hosting
+npm install
+```
+
+Now, run the setup script to copy the needed files and proceed with the setup:
+
+```bash
+npm run setup
+```
+
+## Start the Server
+
+To start the server, run:
+
+```bash
+npm run start
+```
+
+### Running Spatie Bots
+
+You must run the bots separately for now. To start the bots, open a new terminal, navigate to the `airbattle-hosting` directory, and run:
+
+```bash
+npm run bots
+```
+
+Add `-- --num=` after the above to specify the number of bots to run. For example, to run 10 bots:
+
+```bash
+npm run bots -- --num=10
 ```
