@@ -10,6 +10,8 @@ This uses the following repos:
 
 ## Setup
 
+> **NOTE**: These instructions are out of date. Please see the [docs](https://parsehex.github.io/airbattle-hosting/) / [Getting Started](https://parsehex.github.io/airbattle-hosting/getting-started) page for the most up-to-date instructions.
+
 1. Install nvm and node 12
    - Windows: Download and run the latest `nvm-setup.exe` from [nvm-windows](https://github.com/coreybutler/nvm-windows/releases)
    - For Linux/macOS: See [this page](https://github.com/nvm-sh/nvm#install--update-script)
