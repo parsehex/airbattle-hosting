@@ -45,13 +45,13 @@ export default defineConfig({
     },
 
     sidebar: [
-      // {
-      //   text: 'Examples',
-      //   items: [
-      //     { text: 'Markdown Examples', link: '/markdown-examples' },
-      //     { text: 'Runtime API Examples', link: '/api-examples' }
-      //   ]
-      // }
+      {
+        // text: 'Examples',
+        items: [
+          { text: 'Set Up Server', link: '/getting-started' },
+          { text: 'Sharing the Server', link: '/external-sharing' }
+        ]
+      }
     ],
 
     socialLinks: [
