@@ -40,6 +40,9 @@ export default defineConfig({
       { text: 'Home', link: '/' },
       // { text: 'Examples', link: '/markdown-examples' }
     ],
+    lastUpdated: {
+      text: 'Last Updated',
+    },
 
     sidebar: [
       // {
