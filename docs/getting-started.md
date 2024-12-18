@@ -51,6 +51,8 @@ npm run start
 
 You should be able to access the game at [`127.0.0.1:3501`](http://127.0.0.1:3501) in your browser.
 
+To let others join your server, see the [external sharing](./external-sharing.md) guide for more information.
+
 ## Running Spatie Bots
 
 You must run the bots separately for now. To start 1 bot, open a new terminal, navigate to the `airbattle-hosting` directory, and run:
