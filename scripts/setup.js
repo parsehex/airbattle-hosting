@@ -1,0 +1,34 @@
+import { runCommand, runCommandOutput, symlink, move } from './lib.js';
+import path from 'path';
+import { fileURLToPath } from 'node:url'
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+(async () => {
+	try {
+		const nodeVersion = await runCommandOutput('node', ['--version']);
+		if (!nodeVersion.includes('v12')) {
+			await runCommand('nvm', ['use', '12']);
+		}
+
+		await runCommand('git', ['pull', '--recurse-submodules'], { cwd: root });
+
+		await move(path.join(root, 'ab-frontend/games.json.example'), path.join(root, 'ab-frontend/games.json'));
+		await symlink(path.join(root, 'ab-frontend/games.json'), path.join(root, 'games.json'));
+		await move(path.join(root, 'ab-server/.env.example'), path.join(root, 'ab-server/.env'));
+		await symlink(path.join(root, 'ab-server/.env'), path.join(root, '.env.server'));
+
+		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-frontend') });
+		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-frontend') });
+		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-server') });
+		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-server') });
+		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-bot') });
+		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-bot') });
+
+		console.log('Setup complete.');
+		console.log('You can now start the application by running `npm run start`.');
+		process.exit(0);
+	} catch (err) {
+		console.error('Error starting application:', err);
+		process.exit(1);
+	}
+})();
