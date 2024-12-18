@@ -50,10 +50,10 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 			);
 		}
 
-		// await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-frontend') });
-		// await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-frontend') });
-		// await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-server') });
-		// await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-server') });
+		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-frontend') });
+		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-frontend') });
+		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-server') });
+		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-server') });
 
 		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-bot') });
 		await runCommand('npm', ['run', 'build'], {
