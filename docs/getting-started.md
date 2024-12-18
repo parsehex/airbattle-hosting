@@ -64,3 +64,35 @@ Add `-- --num=` after the above to specify the number of bots to run. For exampl
 ```bash
 npm run bots -- --num=10
 ```
+
+## Access the Game
+
+You should be able to access the game at [`127.0.0.1:8000`](http://127.0.0.1:8000) in your browser.
+
+## Troubleshooting
+
+### `EADDRINUSE`
+
+If you see an error like `EADDRINUSE: address already in use`, there might be instance(s) running in the background.
+
+You can kill them by running one of the following commands:
+
+<CollapseSection title="Windows">
+<div class="language-powershell">
+<pre>
+<code>
+Get-NetTCPConnection -LocalPort 3501,8000 | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
+</code>
+</pre>
+</div>
+</CollapseSection>
+
+<CollapseSection title="Linux/macOS">
+<div class="language-bash">
+<pre>
+<code>
+kill -9 $(lsof -t -i:3501,8000)
+</code>
+</pre>
+</div>
+</CollapseSection>
