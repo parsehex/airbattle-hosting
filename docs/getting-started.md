@@ -1,7 +1,3 @@
-<script setup>
-	import CollapseSection from './CollapseSection.vue';
-</script>
-
 # Setting Up Airbattle
 
 (Work in progress)
@@ -10,15 +6,15 @@
 
 First, install NVM if you haven't already. See the instructions for your operating system below:
 
-<CollapseSection title="Windows">
-Download and run the latest <code>nvm-setup.exe</code> from nvm-windows <a href="https://github.com/coreybutler/nvm-windows/releases" target="_blank">here</a>.
-</CollapseSection>
-<br />
-<CollapseSection title="Linux/macOS">
+::: details Windows
+Download and run the latest `nvm-setup.exe` from [nvm-windows](https://github.com/coreybutler/nvm-windows/releases).
+:::
+
+::: details Linux/macOS
 Run <code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash</code> in your terminal.
 
-See full/updated instructions on <a href="https://github.com/nvm-sh/nvm#install--update-script" target="_blank">this page</a>.
-</CollapseSection>
+See full/updated instructions on [this page](https://github.com/nvm-sh/nvm#install--update-script)
+:::
 
 Now, install Node.js v12 by running the following commands:
 
@@ -77,22 +73,14 @@ If you see an error like `EADDRINUSE: address already in use`, there might be in
 
 You can kill them by running one of the following commands:
 
-<CollapseSection title="Windows">
-<div class="language-powershell">
-<pre>
-<code>
+::: details Windows
+```powershell
 Get-NetTCPConnection -LocalPort 3501,8000 | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
-</code>
-</pre>
-</div>
-</CollapseSection>
+```
+:::
 
-<CollapseSection title="Linux/macOS">
-<div class="language-bash">
-<pre>
-<code>
+::: details Linux/macOS
+```bash
 kill -9 $(lsof -t -i:3501,8000)
-</code>
-</pre>
-</div>
-</CollapseSection>
+```
+:::
