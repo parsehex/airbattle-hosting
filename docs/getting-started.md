@@ -47,23 +47,23 @@ To start the server, run:
 npm run start
 ```
 
-### Running Spatie Bots
+### Access the Game
 
-You must run the bots separately for now. To start the bots, open a new terminal, navigate to the `airbattle-hosting` directory, and run:
+You should be able to access the game at [`127.0.0.1:3501`](http://127.0.0.1:3501) in your browser.
+
+## Running Spatie Bots
+
+You must run the bots separately for now. To start 1 bot, open a new terminal, navigate to the `airbattle-hosting` directory, and run:
 
 ```bash
 npm run bots
 ```
 
-Add `-- --num=` after the above to specify the number of bots to run. For example, to run 10 bots:
+To join more than 1 bot, add `-- --num=` after the above command. For example, **to run 10 bots**:
 
 ```bash
 npm run bots -- --num=10
 ```
-
-## Access the Game
-
-You should be able to access the game at [`127.0.0.1:3501`](http://127.0.0.1:3501) in your browser.
 
 ## Troubleshooting
 
