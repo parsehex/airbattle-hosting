@@ -36,23 +36,33 @@ export async function copy(source, dest) {
 
 export async function runCommand(command, args, options = {}) {
   console.log(`Running: ${command} ${args.join(' ')}`);
-	// const isWindows = process.platform === 'win32';
-	// if (isWindows && command === 'npm') {
-  //   command = process.env.COMSPEC || 'cmd.exe';
-  //   args = ['/c', 'npm'].concat(args);
-  // }
 
   return new Promise((resolve, reject) => {
     const proc = spawn(command, args, {
       stdio: 'inherit',
-      shell: true,
-			killSignal: 'SIGKILL',
+      shell: false,
 			windowsHide: true,
-			windowsVerbatimArguments: true,
+			killSignal: 'SIGKILL',
       ...options
     });
 
+    const cleanup = () => {
+      if (!proc.killed) {
+        proc.kill('SIGKILL'); // or SIGKILL if necessary
+      }
+    };
+
+		process.stdin.resume();
+
+    process.on('exit', cleanup);
+    process.on('SIGINT', cleanup);
+    process.on('SIGTERM', cleanup);
+
     proc.on('close', (code) => {
+      process.removeListener('exit', cleanup);
+      process.removeListener('SIGINT', cleanup);
+      process.removeListener('SIGTERM', cleanup);
+
       if (code === 0) {
         console.log(`Successfully completed: ${command}`);
         resolve();
@@ -67,6 +77,7 @@ export async function runCommand(command, args, options = {}) {
     });
   });
 }
+
 
 // function to run and get the output of a command
 export async function runCommandOutput(command, args, options = {}) {

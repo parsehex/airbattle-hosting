@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./scripts/start.js",
     "setup": "node ./scripts/setup.js",
+    "bots": "npm start --prefix ./ab-bot",
     "rebuild-docker:win": "docker-compose down ; docker-compose build ; docker-compose up",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
