@@ -63,7 +63,7 @@ npm run bots -- --num=10
 
 ## Access the Game
 
-You should be able to access the game at [`127.0.0.1:8000`](http://127.0.0.1:8000) in your browser.
+You should be able to access the game at [`127.0.0.1:3501`](http://127.0.0.1:3501) in your browser.
 
 ## Troubleshooting
 
@@ -75,12 +75,12 @@ You can kill them by running one of the following commands:
 
 ::: details Windows
 ```powershell
-Get-NetTCPConnection -LocalPort 3501,8000 | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
+Get-NetTCPConnection -LocalPort 3501 | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
 ```
 :::
 
 ::: details Linux/macOS
 ```bash
-kill -9 $(lsof -t -i:3501,8000)
+kill -9 $(lsof -t -i:3501)
 ```
 :::

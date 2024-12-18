@@ -11,7 +11,6 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 		}
 
 		await runConcurrent([
-			() => runCommand('npm', ['run', 'start'], { cwd: path.join(root, 'ab-frontend') }),
 			() => runCommand('npm', ['run', 'start'], { cwd: path.join(root, 'ab-server') }),
 			// () => runCommand('npm', ['run', 'start', '--', '--ws=ws://127.0.0.1:3501', '--num=12'], { cwd: path.join(root, 'ab-bot') }),
 		]);
