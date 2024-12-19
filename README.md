@@ -47,3 +47,7 @@ Edit the files as needed.
     - Value options can be a list, or an object with min/max and/or default keys
   - Load the files to display in the docs
   - Use the files to populate a CLI tool to change config options
+
+## License
+
+Since this project is based on unlicensed code recreating or duplicating the original AIRMASH game, this project also has no license.
