@@ -44,6 +44,10 @@ export default defineConfig({
       text: 'Last Updated',
     },
 
+    search: {
+      provider: 'local'
+    },
+
     sidebar: [
       {
         // text: 'Examples',
