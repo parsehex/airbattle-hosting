@@ -10,9 +10,6 @@ hero:
       text: Getting Started
       link: /getting-started
     - theme: alt
-      text: Running the server
-      link: /running-the-server
-    - theme: alt
       text: Server options
       link: /server/options
 

@@ -2,7 +2,7 @@
 
 <!-- this is also a TODO for commands to manage the server -->
 
-There are a few commands to help manage the server. To run them, make sure you are in the `airbattle-hosting` directory:
+There are a few commands to help manage the server. To run any of them, first open a terminal and navigate to the `airbattle-hosting` directory:
 
 ```bash
 cd airbattle-hosting
