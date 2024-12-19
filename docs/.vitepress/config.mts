@@ -38,19 +38,16 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Home', link: '/' },
-      // { text: 'Examples', link: '/markdown-examples' }
     ],
     lastUpdated: {
       text: 'Last Updated',
     },
-
+    externalLinkIcon: true,
     search: {
       provider: 'local'
     },
-
     sidebar: [
       {
-        // text: 'Examples',
         items: [
           { text: 'Set Up Server', link: '/getting-started' },
           { text: 'Sharing the Server', link: '/external-sharing' },

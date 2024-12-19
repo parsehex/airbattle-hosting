@@ -39,3 +39,21 @@ npm run bots -- --num=10
 ::: warning `TODO`
 This command does not exist yet.
 :::
+
+## Update
+
+::: warning `TODO`
+This command does not exist yet.
+
+* git pull recrusively
+* npm install components that have changed their package*.json
+* Rebuild components that have changed
+:::
+
+## Development
+
+::: warning `TODO`
+This command does not exist yet.
+
+* Allow specifying component(s) to run
+:::
