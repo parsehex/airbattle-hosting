@@ -12,6 +12,9 @@ hero:
     - theme: alt
       text: Running the server
       link: /running-the-server
+    - theme: alt
+      text: Server options
+      link: /server/options
 
 # features:
 #   - title: Feature A

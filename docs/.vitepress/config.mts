@@ -53,7 +53,10 @@ export default defineConfig({
         // text: 'Examples',
         items: [
           { text: 'Set Up Server', link: '/getting-started' },
-          { text: 'Sharing the Server', link: '/external-sharing' }
+          { text: 'Sharing the Server', link: '/external-sharing' },
+          { text: 'Management Commands', link: '/server/management' },
+          { text: 'In-Game Commands', link: '/server/commands' },
+          { text: 'Server Options', link: '/server/options' },
         ]
       }
     ],
