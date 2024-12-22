@@ -8,6 +8,10 @@
     "setup": "node ./scripts/setup.js",
     "bots": "npm start --prefix ./ab-bot",
     "rebuild-docker:win": "docker-compose down ; docker-compose build ; docker-compose up",
+    "build": "npm run build:frontend && npm run build:server && npm run build:bot",
+    "build:frontend": "npm run build --prefix ./ab-frontend",
+    "build:server": "npm run build --prefix ./ab-server",
+    "build:bot": "npm run build --prefix ./ab-bot",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
