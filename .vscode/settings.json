@@ -1,3 +1,5 @@
 {
 	"editor.formatOnSave": false
+	// Recommended to also swap keybind for Save to Save Without Formatting
+	// https://stackoverflow.com/a/70403364
 }
