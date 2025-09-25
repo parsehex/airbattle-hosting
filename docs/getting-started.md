@@ -16,11 +16,11 @@ Run <code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.
 See full/updated instructions on [this page](https://github.com/nvm-sh/nvm#install--update-script)
 :::
 
-Now, install Node.js v12 by running the following commands:
+Now, install Node.js v22 by running the following commands:
 
 ```bash
-nvm install 12
-nvm use 12
+nvm install 22
+nvm use 22
 ```
 
 ## Clone the Repository and Setup

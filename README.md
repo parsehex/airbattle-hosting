@@ -10,37 +10,56 @@ This uses the following repos:
 
 ## Setup
 
-> **NOTE**: These instructions are out of date. Please see the [docs](https://parsehex.github.io/airbattle-hosting/) / [Getting Started](https://parsehex.github.io/airbattle-hosting/getting-started) page for the most up-to-date instructions.
+> Please also see the [Getting Started](https://parsehex.github.io/airbattle-hosting/getting-started) page for the most up-to-date instructions.
 
-1. Install nvm and node 12
+1. Install nvm and node 22
    - Windows: Download and run the latest `nvm-setup.exe` from [nvm-windows](https://github.com/coreybutler/nvm-windows/releases)
    - For Linux/macOS: See [this page](https://github.com/nvm-sh/nvm#install--update-script)
-2. Install node v12 by running:
+2. Install Node v22 by running:
 
 ```bash
-nvm install 12
-nvm use 12
+nvm install 22
 ```
 
-3. Clone this repo + submodules and cd into it
+3. Clone this repo + submodules, cd into it, install and run the setup script.
 
 ```bash
 git clone https://github.com/parsehex/airbattle-hosting --recursive
-cd ab-hosting
+cd airbattle-hosting
+npm install
+npm run setup
 ```
 
-4. Copy the environment and `games.json` files
+Expect this to take some time, but eventually you should have built copies of `ab-bot`, `ab-frontend`, and `ab-server`.
+
+You can edit the sym-linked file `.env.server` to customize the server, or change `games.json` which is loaded by the frontend for the games list (for changes to take effect, run `npm run build:frontend`).
+
+## Electron wrapper (experimental)
+
+There is an early version of an electron wrapper which runs the server/frontend + bots with a single command and window. This is something I've personally wanted for a while and it wouldn't be possible without **Node v20+ support** in `ab-server` which was accomplished by [Nebulous-Narwhal-48](https://github.com/Nebulous-Narwhal-48) on [their fork](https://github.com/Nebulous-Narwhal-48/ab-server).
+
+To try this yourself:
+
+1. Follow the [Setup](#setup) instructions.
+2. Create binaries for the server and bots:
 
 ```bash
-cp .env.server.example .env.server
-cp games.json.example games.json
+# from within airbattle-hosting/
+npm run build-bins
 ```
 
-Edit the files as needed.
+3. Now run the electron app:
 
-## Thoughts
+```bash
+npm run electron
+```
 
-- Only have 1 copy of config files (in the repo that uses i), symlink to them in root during setup
+The window should open after a few seconds and now you can play the game single player with bots!
+
+You can use the control at the top right corner to change the number of bots -- click Apply to restart the bots.
+
+## Thoughts / TODO
+
 - Provide definitions for server/etc options within JSON files
   - Organize by type (server, frontend, bot)
   - Include name, description, config location, key name, value type, value options
