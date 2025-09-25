@@ -6,8 +6,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 (async () => {
 	try {
 		const nodeVersion = await runCommandOutput('node', ['--version']);
-		if (!nodeVersion.includes('v12')) {
-			await runCommand('nvm', ['use', '12']);
+		if (!nodeVersion.includes('v22')) {
+			await runCommand('nvm', ['use', '22']);
 		}
 
 		await runConcurrent([
