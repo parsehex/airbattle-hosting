@@ -1,7 +1,10 @@
-export const src = `console.log('Preload ran');
-const { contextBridge, ipcRenderer } = require('electron');
+import { contextBridge, ipcRenderer } from 'electron';
 
-const setBotCount = (num) => ipcRenderer.send('set-bot-count', num)
+console.log('Preload ran');
+
+const setBotCount = (num: number): void => {
+	ipcRenderer.send('set-bot-count', num);
+};
 
 contextBridge.exposeInMainWorld('electron', {
 	setBotCount,
@@ -15,7 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	panel.style.position = 'fixed';
 	panel.style.top = '10px';
 	panel.style.right = '10px';
-	panel.style.zIndex = 99999;
+	panel.style.zIndex = '99999';
 	panel.style.background = 'rgba(0,0,0,0.7)';
 	panel.style.color = 'white';
 	panel.style.padding = '8px';
@@ -47,4 +50,4 @@ window.addEventListener('DOMContentLoaded', () => {
 	panel.appendChild(input);
 	panel.appendChild(button);
 	document.body.appendChild(panel);
-});`;
+});

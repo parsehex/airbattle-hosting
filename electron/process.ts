@@ -1,10 +1,10 @@
-import { execFile } from "child_process";
+import { execFile, ChildProcess } from "child_process";
 import { app } from "electron";
 import { basename, dirname } from "path";
 
-export const processes = {};
+export const processes: Record<string, ChildProcess> = {};
 
-export function startProcess(binPath, name, args = []) {
+export function startProcess(binPath: string, name?: string, args: string[] = []): ChildProcess {
 	if (!name) name = basename(binPath);
 	const proc = execFile(binPath, args, {
 		cwd: dirname(binPath),
@@ -27,6 +27,6 @@ export function startProcess(binPath, name, args = []) {
 	});
 
 	proc.stdin?.end();
-	
+
 	return proc;
 }

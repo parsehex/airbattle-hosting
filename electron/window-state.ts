@@ -1,11 +1,11 @@
-import { app } from 'electron';
+import { app, type BrowserWindow } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 
-function debounce(func, wait) {
-	let timeout;
+function debounce(func: (...args: any[]) => void, wait: number) {
+	let timeout: any;
 
-	return function executedFunction(...args) {
+	return function executedFunction(...args: any[]) {
 		const later = () => {
 			clearTimeout(timeout);
 			func(...args);
@@ -27,11 +27,12 @@ const DEFAULT_DEFAULT_CONFIG = {
 	y: 0,
 	maximized: false,
 };
+type WindowState = typeof DEFAULT_DEFAULT_CONFIG;
 
-let state;
+let state: WindowState;
 
 export function loadWindowState(
-	def = DEFAULT_DEFAULT_CONFIG
+	def: Partial<WindowState> = DEFAULT_DEFAULT_CONFIG
 ) {
 	try {
 		const dataDir = getDataPath();
@@ -51,12 +52,12 @@ const saveState = debounce(async function () {
 	);
 }, 1000);
 
-export default function rememberWindowState(mainWindow) {
+export default function rememberWindowState(mainWindow: BrowserWindow) {
 	state = loadWindowState();
 	mainWindow.setBounds(state);
 
 	['resize', 'move', 'maximize', 'unmaximize'].forEach((event) => {
-		mainWindow.on(event, () => {
+		mainWindow.on(event as any, () => {
 			if (event === 'resize' || event === 'move') {
 				const bounds = mainWindow.getBounds();
 				state.width = bounds.width;

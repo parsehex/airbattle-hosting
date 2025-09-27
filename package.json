@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "This is a repo to be able to easily run an instance of the game AIRMASH.",
   "type": "module",
-  "main": "electron/main.js",
+  "main": "./out/main/main.js",
   "scripts": {
     "build-bins": "npm run build-bin --prefix ./ab-server && npm run build-bin --prefix ./ab-bot",
-    "electron": "electron .",
+    "electron": "electron-vite preview",
+    "electron:dev": "electron-vite dev",
+    "electron:build": "electron-vite build",
     "start": "node ./scripts/start.js",
     "setup": "node ./scripts/setup.js",
     "bots": "npm start --prefix ./ab-bot",
@@ -25,6 +27,7 @@
     "@types/node": "^22.10.2",
     "autoprefixer": "^10.4.20",
     "electron": "^38.1.2",
+    "electron-vite": "^4.0.1",
     "tailwindcss": "^3.4.16",
     "vite-tsconfig-paths": "^5.1.4",
     "vitepress": "^1.5.0"
