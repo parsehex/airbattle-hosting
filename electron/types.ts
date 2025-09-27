@@ -1,6 +1,10 @@
-export interface Config {
+export interface ServerConfig {
   gameMode: string;
-  botCount: number;
   upgradesFever: boolean;
   ctfExtraSpawns: boolean;
 }
+export interface BotsConfig {
+  botCount: number;
+  botCharacter: string;
+}
+export type Config = ServerConfig & BotsConfig;

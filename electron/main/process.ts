@@ -1,16 +1,38 @@
 import { execFile, ChildProcess } from "child_process";
 import { app } from "electron";
-import { basename, dirname } from "path";
+import { basename, dirname, resolve } from "path";
 
 export const processes: Record<string, ChildProcess | null> = {};
 
-export function startProcess(binPath: string, name?: string, args: string[] = []): ChildProcess {
+export function startProcess(binPath: string, name?: string, args: string[] = [], cwd = ''): ChildProcess {
 	if (!name) name = basename(binPath);
-	const proc = execFile(binPath, args, {
-		cwd: dirname(binPath),
-		windowsHide: true,
-		killSignal: 'SIGKILL',
-	});
+
+	let proc: ChildProcess;
+	if (binPath === 'node' && args.length > 0) {
+		const scriptPath = args[0];
+		const scriptArgs = args.slice(1);
+		cwd = dirname(scriptPath);
+		if (scriptPath.includes('dist')) {
+			cwd = resolve(cwd, '..');
+		}
+		console.log('cwd', cwd, `node ${scriptPath}`);
+		proc = execFile('node', [scriptPath, ...scriptArgs], {
+			cwd,
+			windowsHide: true,
+			killSignal: 'SIGKILL',
+		});
+	} else {
+		cwd = dirname(binPath);
+		if (binPath.includes('dist')) {
+			cwd = resolve(cwd, '..');
+		}
+		console.log('cwd', cwd, binPath);
+		proc = execFile(binPath, args, {
+			cwd,
+			windowsHide: true,
+			killSignal: 'SIGKILL',
+		});
+	}
 	processes[name] = proc;
 
 	proc.stdout?.on("data", (data) => {

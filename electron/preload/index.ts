@@ -1,10 +1,14 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { Config } from '../types.js';
+import { Config, ServerConfig, BotsConfig } from '../types.js';
 
 console.log('Preload ran');
 
-const setConfig = (config: Config): void => {
-	ipcRenderer.send('set-config', config);
+const setServerConfig = (config: ServerConfig): void => {
+  ipcRenderer.send('set-server-config', config);
+};
+
+const restartBots = (botConfig: BotsConfig): void => {
+  ipcRenderer.send('restart-bots', botConfig);
 };
 
 const getConfig = (): Promise<Config> => {
@@ -12,7 +16,8 @@ const getConfig = (): Promise<Config> => {
 };
 
 contextBridge.exposeInMainWorld('electron', {
-	setConfig,
+  setServerConfig,
+  restartBots,
 	getConfig,
 	ipcRendererOn: ipcRenderer.on.bind(ipcRenderer),
 	ipcRendererRemoveListener: ipcRenderer.removeListener.bind(ipcRenderer)
