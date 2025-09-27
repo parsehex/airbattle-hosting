@@ -3,6 +3,7 @@ import rememberWindowState, { loadWindowState } from './window-state.js';
 import { resolve } from 'path';
 import { readFileSync, writeFileSync } from 'fs';
 import { processes, startProcess } from './process.js';
+import { Config } from './types.js';
 
 let mainWindow: BrowserWindow | null = null;
 
@@ -13,26 +14,108 @@ function delay(ms: number): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function updateGameMode(gameMode: string): void {
+function updateEnvConfig(config: Config) {
+	const envPath = resolve(__dirname, '../../ab-server/.env');
+	let envContent = readFileSync(envPath, 'utf8');
+	let lines = envContent.split('\n');
+	let changed = false;
+
+	// SERVER_TYPE
+	let gameModeFound = false;
+	for (let i = 0; i < lines.length; i++) {
+		if (lines[i].includes('SERVER_TYPE=')) {
+			gameModeFound = true;
+			const commented = lines[i].startsWith('#');
+			if (lines[i].includes(config.gameMode) && !commented) continue;
+			lines[i] = `SERVER_TYPE="${config.gameMode}"`;
+			changed = true;
+			break;
+		}
+	}
+	if (!gameModeFound) {
+		lines.push(`SERVER_TYPE="${config.gameMode}"`);
+		changed = true;
+	}
+
+	// UPGRADES_FEVER_SCHEDULE
+	// TODO doesn't have effect
+	let upgradesFeverFound = false;
+	for (let i = 0; i < lines.length; i++) {
+		if (lines[i].includes('UPGRADES_FEVER_SCHEDULE=')) {
+			if (config.upgradesFever) {
+				const commented = lines[i].startsWith('#');
+				if (lines[i].includes('0 0 0 0 10079') && !commented) continue;
+				lines[i] = `UPGRADES_FEVER_SCHEDULE="0 0 0 0 10079"`;
+				changed = true;
+			} else {
+				lines.splice(i, 1); // Remove the line
+				changed = true;
+			}
+			upgradesFeverFound = true;
+			break;
+		}
+	}
+	if (!upgradesFeverFound && config.upgradesFever) {
+		lines.push(`UPGRADES_FEVER_SCHEDULE="0 0 0 0 10079"`);
+		changed = true;
+	}
+
+	// CTF_EXTRA_SPAWNS
+	let ctfExtraSpawnsFound = false;
+	for (let i = 0; i < lines.length; i++) {
+		if (lines[i].includes('CTF_EXTRA_SPAWNS=')) {
+			if (config.ctfExtraSpawns) {
+				const commented = lines[i].startsWith('#');
+				if (lines[i].includes('true') && !commented) continue;
+				lines[i] = `CTF_EXTRA_SPAWNS=true`;
+				changed = true;
+			} else {
+				lines.splice(i, 1); // Remove the line
+				changed = true;
+			}
+			ctfExtraSpawnsFound = true;
+			break;
+		}
+	}
+	if (!ctfExtraSpawnsFound && config.ctfExtraSpawns) {
+		lines.push(`CTF_EXTRA_SPAWNS=true`);
+		changed = true;
+	}
+
+	if (changed) {
+		writeFileSync(envPath, lines.join('\n'), 'utf8');
+		console.log(`Updated .env config: Game mode: ${config.gameMode}, Upgrades Fever: ${config.upgradesFever}, CTF Extra Spawns: ${config.ctfExtraSpawns}`);
+	}
+	return changed;
+}
+
+function readEnvConfig(): Config {
 	const envPath = resolve(__dirname, '../../ab-server/.env');
 	const envContent = readFileSync(envPath, 'utf8');
 	const lines = envContent.split('\n');
 
-	// Find the line with SERVER_TYPE
-	for (let i = 0; i < lines.length; i++) {
-		if (lines[i].includes('SERVER_TYPE=')) {
-			console.log(i);
-			lines[i] = `SERVER_TYPE="${gameMode}"`;
-			break;
+	let gameMode: string = 'FFA'; // Default
+	let upgradesFever: boolean = false; // Default
+	let ctfExtraSpawns: boolean = false; // Default
+
+	for (const line of lines) {
+		if (line.startsWith('SERVER_TYPE=')) {
+			gameMode = line.split('=')[1].replace(/"/g, '');
+		} else if (line.startsWith('UPGRADES_FEVER_SCHEDULE=')) {
+			upgradesFever = true;
+		} else if (line.startsWith('CTF_EXTRA_SPAWNS=')) {
+			ctfExtraSpawns = true;
 		}
 	}
 
-	writeFileSync(envPath, lines.join('\n'), 'utf8');
-	console.log(`Set game mode to: ${gameMode}`);
+	return { gameMode, botCount: currentBotCount, upgradesFever, ctfExtraSpawns };
 }
 
+ipcMain.handle('get-config', async () => {
+	 return readEnvConfig();
+});
+
 const createMainWindow = async () => {
-	// Flag that we’re running in Electron.
 	process.env.IS_ELECTRON = 'true';
 
 	const windowState = loadWindowState({
@@ -63,50 +146,36 @@ ipcMain.on('restart-app', () => {
 	app.exit();
 });
 
-let currentBotCount = 10; // default
+let currentBotCount = 10;
 
-ipcMain.on('set-bot-count', async (event, num: number) => {
-  console.log(`Updating bots: ${num}`);
-  currentBotCount = num;
+ipcMain.on('set-config', async (event, config: Config) => {
+	 console.log(`Setting config - Game mode: ${config.gameMode}, Bot count: ${config.botCount}, Upgrades Fever: ${config.upgradesFever}, CTF Extra Spawns: ${config.ctfExtraSpawns}`);
 
-  // Kill existing bots if running
-  if (processes['bots']) {
-    processes['bots'].kill("SIGKILL");
-    delete processes['bots'];
-		await delay(1500);
-  }
+	 const { gameMode, botCount, upgradesFever, ctfExtraSpawns } = config;
+	const changedBots = currentBotCount !== botCount;
+	 currentBotCount = botCount;
 
-  // Restart with new bot count
-  const botsArgs = [
-    "--ws=ws://127.0.0.1:3501",
-    "--type=distribute",
-    "--character=Aggressive",
-    "--flag=rainbow",
-    `--num=${currentBotCount}`
-  ];
+	 const doRestartServer = updateEnvConfig(config);
 
-  startProcess(botsPath, 'bots', botsArgs);
-});
-
-ipcMain.on('set-game-mode', async (event, gameMode: string) => {
-  console.log(`Switching game mode to: ${gameMode}`);
-
-  updateGameMode(gameMode);
-
-  if (processes['bots']) {
+  if (processes['bots'] && (doRestartServer || changedBots)) {
     processes['bots'].kill("SIGKILL");
     processes['bots'] = null;
   }
-  if (processes['server']) {
-    processes['server'].kill("SIGKILL");
-    processes['server'] = null;
+
+  if (doRestartServer) {
+		if (processes['server']) {
+			processes['server'].kill("SIGKILL");
+			processes['server'] = null;
+		}
+
+		startProcess(backendPath, 'server');
+
+		await delay(1500);
+		mainWindow?.reload();
+		await delay(1500);
   }
 
-  startProcess(backendPath, 'server');
-
-  await delay(1500);
-	mainWindow?.reload();
-  await delay(1500);
+	if (!changedBots) return;
 
   const botsArgs = [
     "--ws=ws://127.0.0.1:3501",
@@ -124,6 +193,10 @@ app.on('ready', async () => {
 	const win = await createMainWindow();
 	rememberWindowState(win);
 
+	// Read initial config and set currentBotCount
+	const initialConfig = readEnvConfig();
+	currentBotCount = initialConfig.botCount; // Ensure currentBotCount is initialized
+
 	startProcess(backendPath, 'server');
 
 	await delay(1500);
@@ -138,7 +211,7 @@ app.on('ready', async () => {
 		"--type=distribute",
 		"--character=Aggressive",
 		"--flag=rainbow",
-		"--num=10"
+		`--num=${currentBotCount}` // Use currentBotCount for initial bot process
 	];
 
 	startProcess(botsPath, 'bots', botsArgs);

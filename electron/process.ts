@@ -23,7 +23,7 @@ export function startProcess(binPath: string, name?: string, args: string[] = []
 
 	proc.on("exit", (code, signal) => {
 		console.log(`${name} exited with code ${code}, signal ${signal}`);
-		if (signal !== 'SIGKILL' && name === 'server' || name === 'backend') app.quit();
+		if (signal !== 'SIGKILL' && (name === 'server' || name === 'backend')) app.quit();
 	});
 
 	proc.stdin?.end();

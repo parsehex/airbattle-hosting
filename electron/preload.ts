@@ -1,18 +1,19 @@
 import { contextBridge, ipcRenderer } from 'electron';
+import { Config } from './types.js';
 
 console.log('Preload ran');
 
-const setBotCount = (num: number): void => {
-	ipcRenderer.send('set-bot-count', num);
+const setConfig = (config: Config): void => {
+	ipcRenderer.send('set-config', config);
 };
 
-const setGameMode = (gameMode: string): void => {
-	ipcRenderer.send('set-game-mode', gameMode);
+const getConfig = (): Promise<Config> => {
+  return ipcRenderer.invoke('get-config');
 };
 
 contextBridge.exposeInMainWorld('electron', {
-	setBotCount,
-	setGameMode,
+	setConfig,
+	getConfig,
 	ipcRendererOn: ipcRenderer.on.bind(ipcRenderer),
 	ipcRendererRemoveListener: ipcRenderer.removeListener.bind(ipcRenderer)
 });
@@ -21,7 +22,7 @@ contextBridge.exposeInMainWorld('electron', {
 window.addEventListener('DOMContentLoaded', () => {
 	if (document.querySelector('.playoptions'))
 		(document.querySelector('.playoptions') as HTMLDivElement).style.display = 'none';
-	
+
 	const panel = document.createElement('div');
 	panel.style.position = 'fixed';
 	panel.style.top = '10px';
@@ -37,21 +38,16 @@ window.addEventListener('DOMContentLoaded', () => {
 	panel.style.gap = '8px';
 	panel.style.minWidth = '150px';
 
-	// Game Mode Section
-	const gameModeSection = document.createElement('div');
-	gameModeSection.style.display = 'flex';
-	gameModeSection.style.flexDirection = 'column';
-	gameModeSection.style.gap = '4px';
+	// Configuration Section
+	const configSection = document.createElement('div');
+	configSection.style.display = 'flex';
+	configSection.style.flexDirection = 'column';
+	configSection.style.gap = '8px';
 
+	// Game Mode Controls
 	const gameModeLabel = document.createElement('span');
 	gameModeLabel.textContent = 'Game Mode:';
-	gameModeSection.appendChild(gameModeLabel);
-	
-	const gameModeControls = document.createElement('div');
-	gameModeControls.style.display = 'flex';
-	gameModeControls.style.gap = '4px';
-	gameModeControls.style.alignItems = 'center';
-	gameModeSection.appendChild(gameModeControls);
+	configSection.appendChild(gameModeLabel);
 
 	const gameModeSelect = document.createElement('select');
 	gameModeSelect.style.padding = '4px';
@@ -67,57 +63,84 @@ window.addEventListener('DOMContentLoaded', () => {
 		gameModeSelect.appendChild(option);
 	});
 
-	const gameModeButton = document.createElement('button');
-	gameModeButton.textContent = 'Switch Mode';
-	gameModeButton.style.cursor = 'pointer';
-	gameModeButton.style.padding = '4px 8px';
-	gameModeButton.style.marginTop = '4px';
+	configSection.appendChild(gameModeSelect);
 
-	gameModeButton.onclick = () => {
-		const selectedMode = gameModeSelect.value;
-		setGameMode(selectedMode);
-	};
-
-	gameModeControls.appendChild(gameModeSelect);
-	gameModeControls.appendChild(gameModeButton);
-
-	// Bot Count Section
-	const botSection = document.createElement('div');
-	botSection.style.display = 'flex';
-	botSection.style.flexDirection = 'column';
-	botSection.style.gap = '4px';
-
+	// Bot Count Controls
 	const botLabel = document.createElement('span');
 	botLabel.textContent = 'Bots:';
-	botSection.appendChild(botLabel);
-
-	const botControls = document.createElement('div');
-	botControls.style.display = 'flex';
-	botControls.style.gap = '4px';
-	botControls.style.alignItems = 'center';
+	configSection.appendChild(botLabel);
 
 	const botInput = document.createElement('input');
 	botInput.type = 'number';
 	botInput.min = '0';
 	botInput.value = '10';
-	botInput.style.width = '60px';
+	botInput.style.width = '80px';
 	botInput.style.padding = '4px';
+	configSection.appendChild(botInput);
 
-	const botButton = document.createElement('button');
-	botButton.textContent = 'Apply';
-	botButton.style.cursor = 'pointer';
-	botButton.style.padding = '4px 8px';
+	// Upgrades Fever Checkbox
+	const upgradesFeverContainer = document.createElement('div');
+	upgradesFeverContainer.style.display = 'flex';
+	upgradesFeverContainer.style.alignItems = 'center';
+	upgradesFeverContainer.style.gap = '5px';
 
-	botButton.onclick = () => {
-		const num = parseInt(botInput.value, 10) || 0;
-		setBotCount(num);
+	const upgradesFeverCheckbox = document.createElement('input');
+	upgradesFeverCheckbox.type = 'checkbox';
+	upgradesFeverCheckbox.id = 'upgradesFeverCheckbox';
+	upgradesFeverContainer.appendChild(upgradesFeverCheckbox);
+
+	const upgradesFeverLabel = document.createElement('label');
+	upgradesFeverLabel.htmlFor = 'upgradesFeverCheckbox';
+	upgradesFeverLabel.textContent = 'Upgrades Fever';
+	upgradesFeverContainer.appendChild(upgradesFeverLabel);
+	configSection.appendChild(upgradesFeverContainer);
+
+	// CTF Extra Spawns Checkbox
+	const ctfExtraSpawnsContainer = document.createElement('div');
+	ctfExtraSpawnsContainer.style.display = 'flex';
+	ctfExtraSpawnsContainer.style.alignItems = 'center';
+	ctfExtraSpawnsContainer.style.gap = '5px';
+
+	const ctfExtraSpawnsCheckbox = document.createElement('input');
+	ctfExtraSpawnsCheckbox.type = 'checkbox';
+	ctfExtraSpawnsCheckbox.id = 'ctfExtraSpawnsCheckbox';
+	ctfExtraSpawnsContainer.appendChild(ctfExtraSpawnsCheckbox);
+
+	const ctfExtraSpawnsLabel = document.createElement('label');
+	ctfExtraSpawnsLabel.htmlFor = 'ctfExtraSpawnsCheckbox';
+	ctfExtraSpawnsLabel.textContent = 'Spawns';
+	ctfExtraSpawnsContainer.appendChild(ctfExtraSpawnsLabel);
+	configSection.appendChild(ctfExtraSpawnsContainer);
+
+	// Apply Button
+	const applyButton = document.createElement('button');
+	applyButton.textContent = 'Apply';
+	applyButton.style.cursor = 'pointer';
+	applyButton.style.padding = '6px 12px';
+	applyButton.style.backgroundColor = '#007bff';
+	applyButton.style.color = 'white';
+	applyButton.style.border = 'none';
+	applyButton.style.borderRadius = '3px';
+	applyButton.style.marginTop = '8px';
+
+	applyButton.onclick = () => {
+		const gameMode = gameModeSelect.value;
+		const botCount = parseInt(botInput.value, 10) || 0;
+		const upgradesFever = upgradesFeverCheckbox.checked;
+		const ctfExtraSpawns = ctfExtraSpawnsCheckbox.checked;
+		setConfig({ gameMode, botCount, upgradesFever, ctfExtraSpawns });
 	};
 
-	botControls.appendChild(botInput);
-	botControls.appendChild(botButton);
-	botSection.appendChild(botControls);
+	configSection.appendChild(applyButton);
 
-	panel.appendChild(gameModeSection);
-	panel.appendChild(botSection);
+	panel.appendChild(configSection);
 	document.body.appendChild(panel);
+
+	// Initialize UI with current config
+	getConfig().then((config: Config) => {
+		gameModeSelect.value = config.gameMode;
+		botInput.value = config.botCount.toString();
+		upgradesFeverCheckbox.checked = config.upgradesFever;
+		ctfExtraSpawnsCheckbox.checked = config.ctfExtraSpawns;
+	});
 });
