@@ -141,6 +141,31 @@ const createMainWindow = async () => {
 	return mainWindow;
 };
 
+let uiWindow: BrowserWindow | null = null;
+
+const createUIWindow = () => {
+	uiWindow = new BrowserWindow({
+		width: 400,
+		height: 600,
+		minWidth: 300,
+		minHeight: 400,
+		webPreferences: {
+			nodeIntegration: false,
+			contextIsolation: true,
+			preload: preloadPath,
+			sandbox: false
+		},
+		show: true,
+		autoHideMenuBar: true,
+	});
+
+	if (process.env.NODE_ENV === 'development') {
+		uiWindow.loadURL('http://localhost:5173');
+	} else {
+		uiWindow.loadFile(resolve(__dirname, '../ui/index.html'));
+	}
+};
+
 ipcMain.on('restart-app', () => {
 	app.relaunch();
 	app.exit();
@@ -203,6 +228,7 @@ app.on('ready', async () => {
 
 	win?.reload();
 	win?.show();
+	createUIWindow();
 
 	await delay(5000)
 
