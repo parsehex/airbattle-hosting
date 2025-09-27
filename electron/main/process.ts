@@ -15,7 +15,6 @@ export function startProcess(binPath: string, name?: string, args: string[] = []
 		if (scriptPath.includes('dist')) {
 			cwd = resolve(cwd, '..');
 		}
-		console.log('cwd', cwd, `node ${scriptPath}`);
 		proc = execFile('node', [scriptPath, ...scriptArgs], {
 			cwd,
 			windowsHide: true,
@@ -26,7 +25,6 @@ export function startProcess(binPath: string, name?: string, args: string[] = []
 		if (binPath.includes('dist')) {
 			cwd = resolve(cwd, '..');
 		}
-		console.log('cwd', cwd, binPath);
 		proc = execFile(binPath, args, {
 			cwd,
 			windowsHide: true,

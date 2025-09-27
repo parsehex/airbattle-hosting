@@ -19,12 +19,12 @@ function delay(ms: number): Promise<void> {
 }
 
 function startServer() {
-	if (existsSync(serverDistPath)) {
-		console.log('Starting backend', serverDistPath);
-    startProcess('node', 'server', [serverDistPath]);
-  } else {
+	if (existsSync(serverBinPath)) {
 		console.log('Starting backend', serverBinPath);
     startProcess(serverBinPath, 'server');
+  } else {
+		console.log('Starting backend', serverDistPath);
+    startProcess('node', 'server', [serverDistPath]);
   }
 }
 
@@ -59,7 +59,6 @@ function updateEnvConfig(cfg: ServerConfig) {
 	}
 
 	// UPGRADES_FEVER_SCHEDULE
-	// TODO doesn't have effect
 	let upgradesFeverFound = false;
 	for (let i = 0; i < lines.length; i++) {
 		if (lines[i].includes('UPGRADES_FEVER_SCHEDULE=')) {
