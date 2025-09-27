@@ -1,9 +1,6 @@
 import { resolve } from 'node:path';
 import vue from '@vitejs/plugin-vue';
-import tailwind from 'tailwindcss';
-import autoprefixer from 'autoprefixer';
-
-const tailwindPath = resolve(__dirname, './tailwind.config.js');
+import tailwindcss from "@tailwindcss/vite";
 
 const config: import('electron-vite').UserConfig = {
   main: {
@@ -18,8 +15,7 @@ const config: import('electron-vite').UserConfig = {
 	},
   renderer: {
 		root: resolve(__dirname, './electron/ui'),
-		// @ts-ignore
-		plugins: [vue(), tailwind(tailwindPath), autoprefixer()],
+		plugins: [vue(), tailwindcss()],
 		build: {
 			outDir: resolve(__dirname, 'out/ui'),
 			rollupOptions: {

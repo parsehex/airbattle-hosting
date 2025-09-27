@@ -1,13 +1,7 @@
 import { defineConfig } from 'vitepress'
-import autoprefixer from 'autoprefixer'
-import tailwind from 'tailwindcss'
-import postcss from 'postcss'
+import tailwind from '@tailwindcss/vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { fileURLToPath, URL } from 'node:url'
-import path from 'path'
-
-const tailwindPath = path.resolve(__dirname, '../../tailwind.config.js')
-console.log('tailwindPath', tailwindPath);
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -15,19 +9,11 @@ export default defineConfig({
   description: "",
   base: process.env.NODE_ENV === 'production' ? '/airbattle-hosting/' : '/',
   vite: {
-    css: {
-      postcss: {
-        plugins: [
-          // postcss(),
-          // tsconfigPaths(),
+    plugins: [
+      // tsconfigPaths(),
 
-          tailwind(tailwindPath),
-          // postcss(),
-          autoprefixer(),
-          // postcss(),
-        ]
-      }
-    },
+      tailwind(),
+    ],
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('../', import.meta.url))
