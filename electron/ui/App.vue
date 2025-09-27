@@ -27,73 +27,27 @@ const applyConfig = () => {
 </script>
 
 <template>
-	<div class="airbattle-panel">
-		<div class="airbattle-config-section">
+	<div class="h-screen w-screen bg-black/25 text-white p-3 text-sm flex flex-col gap-2">
+		<div class="flex flex-col gap-2">
 			<span>Game Mode:</span>
-			<select class="airbattle-select" v-model="config.gameMode">
+			<select class="w-full p-1 rounded border-0" v-model="config.gameMode">
 				<option v-for="mode in gameModes" :key="mode" :value="mode">{{ mode }}</option>
 			</select>
 
 			<span>Bots:</span>
-			<input type="number" class="airbattle-input-number" min="0" v-model.number="config.botCount" />
+			<input type="number" class="w-full p-1" min="0" v-model.number="config.botCount" />
 
-			<div class="airbattle-checkbox-container">
+			<div class="flex items-center gap-1">
 				<input type="checkbox" id="upgradesFeverCheckbox" v-model="config.upgradesFever" />
 				<label for="upgradesFeverCheckbox">Upgrades Fever</label>
 			</div>
 
-			<div class="airbattle-checkbox-container">
+			<div class="flex items-center gap-1">
 				<input type="checkbox" id="ctfExtraSpawnsCheckbox" v-model="config.ctfExtraSpawns" />
-				<label for="ctfExtraSpesCheckbox">Spawns</label>
+				<label for="ctfExtraSpawnsCheckbox">CTF Extra Spawns</label>
 			</div>
 
-			<button class="airbattle-button" @click="applyConfig">Apply</button>
+			<button class="w-full cursor-pointer px-3 py-1.5 bg-blue-500 text-white border-0 rounded mt-2" @click="applyConfig">Apply</button>
 		</div>
 	</div>
 </template>
-
-<style>
-.airbattle-panel {
-	position: fixed;
-	top: 10px;
-	right: 10px;
-	z-index: 99999;
-	background: rgba(0,0,0,0.25);
-	color: white;
-	padding: 12px;
-	border-radius: 6px;
-	font-size: 14px;
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	min-width: 150px;
-}
-.airbattle-config-section {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-}
-.airbattle-select {
-	padding: 4px;
-	border-radius: 3px;
-	border: none;
-}
-.airbattle-input-number {
-	width: 80px;
-	padding: 4px;
-}
-.airbattle-checkbox-container {
-	display: flex;
-	align-items: center;
-	gap: 5px;
-}
-.airbattle-button {
-	cursor: pointer;
-	padding: 6px 12px;
-	background-color: #007bff;
-	color: white;
-	border: none;
-	border-radius: 3px;
-	margin-top: 8px;
-}
-</style>
