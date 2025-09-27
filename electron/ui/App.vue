@@ -14,6 +14,7 @@ const config = reactive<Config>({
 	upgradesFever: false,
 	ctfExtraSpawns: false,
 	botCharacter: 'Aggressive',
+	noIdle: false,
 });
 
 const gameModes = ['FFA', 'CTF', 'BTR'];
@@ -44,7 +45,7 @@ const applyServerConfig = () => {
 };
 
 const restartBotsFunc = () => {
-  electron.restartBots({ botCount: config.botCount, botCharacter: config.botCharacter });
+  electron.restartBots({ botCount: config.botCount, botCharacter: config.botCharacter, noIdle: config.noIdle });
 };
 </script>
 
@@ -72,6 +73,10 @@ const restartBotsFunc = () => {
       <select class="w-full p-1 rounded border-0" v-model="config.botCharacter">
         <option v-for="char in characters" :key="char" :value="char">{{ char }}</option>
       </select>
+      <div class="flex items-center gap-1">
+        <input type="checkbox" id="noIdleCheckbox" v-model="config.noIdle" />
+        <label for="noIdleCheckbox">No Idle</label>
+      </div>
       <button class="w-full cursor-pointer px-3 py-1.5 bg-green-500 text-white border-0 rounded mt-1" @click="restartBotsFunc">Save and Restart Bots</button>
     </div>
   </div>

@@ -116,6 +116,7 @@ function readEnvConfig(): Config {
 	let gameMode: string = 'FFA';
 	let upgradesFever: boolean = false;
 	let ctfExtraSpawns: boolean = false;
+	let noIdle = false;
 	const botCharacter: string = 'Aggressive';
 
 	for (const line of lines) {
@@ -128,16 +129,23 @@ function readEnvConfig(): Config {
 		}
 	}
 
-	return { gameMode, botCount: currentBotCount, upgradesFever, ctfExtraSpawns, botCharacter };
+	return { 
+		gameMode, upgradesFever, ctfExtraSpawns, 
+		botCount: currentBotCount,
+		botCharacter,
+		noIdle
+	};
 }
 
 function restartBots(botsConfig?: BotsConfig) {
   const count = botsConfig ? botsConfig.botCount : currentBotCount;
   const character = botsConfig ? botsConfig.botCharacter : currentBotCharacter;
+  const noIdle = botsConfig ? botsConfig.noIdle : currentNoIdle;
 
   if (botsConfig) {
     currentBotCount = count;
     currentBotCharacter = character;
+		currentNoIdle = noIdle;
   }
 
   console.log(`Restarting bots with count: ${count}, character: ${character}`);
@@ -154,6 +162,7 @@ function restartBots(botsConfig?: BotsConfig) {
     "--flag=rainbow",
     `--num=${count}`
   ];
+	if (noIdle) botsArgs.push('--noIdle');
 
   startBots(botsArgs);
 }
@@ -250,6 +259,7 @@ ipcMain.on('restart-app', () => {
 
 let currentBotCount = 10;
 let currentBotCharacter = 'Aggressive';
+let currentNoIdle = false;
 
 ipcMain.on('restart-bots', (e, botConfig: BotsConfig) => {
 	restartBots(botConfig);
