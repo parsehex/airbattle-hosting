@@ -2,7 +2,7 @@ import { execFile, ChildProcess } from "child_process";
 import { app } from "electron";
 import { basename, dirname } from "path";
 
-export const processes: Record<string, ChildProcess> = {};
+export const processes: Record<string, ChildProcess | null> = {};
 
 export function startProcess(binPath: string, name?: string, args: string[] = []): ChildProcess {
 	if (!name) name = basename(binPath);
@@ -23,7 +23,7 @@ export function startProcess(binPath: string, name?: string, args: string[] = []
 
 	proc.on("exit", (code, signal) => {
 		console.log(`${name} exited with code ${code}, signal ${signal}`);
-		if (name === 'server' || name === 'backend') app.quit();
+		if (signal !== 'SIGKILL' && name === 'server' || name === 'backend') app.quit();
 	});
 
 	proc.stdin?.end();
