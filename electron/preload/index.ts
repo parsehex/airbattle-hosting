@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron';
-import { Config } from './types.js';
+import { Config } from '../types.js';
 
 console.log('Preload ran');
 

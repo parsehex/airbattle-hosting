@@ -3,19 +3,20 @@ import rememberWindowState, { loadWindowState } from './window-state.js';
 import { resolve } from 'path';
 import { readFileSync, writeFileSync } from 'fs';
 import { processes, startProcess } from './process.js';
-import { Config } from './types.js';
+import { Config } from '../types.js';
 
 let mainWindow: BrowserWindow | null = null;
 
 const backendPath = resolve(__dirname, '../../ab-server/app-bin');
 const botsPath = resolve(__dirname, "../../ab-bot/app-bin");
+const envPath = resolve(__dirname, '../../ab-server/.env');
+const preloadPath = resolve(__dirname, '../preload/index.mjs')
 
 function delay(ms: number): Promise<void> {
 	return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function updateEnvConfig(config: Config) {
-	const envPath = resolve(__dirname, '../../ab-server/.env');
 	let envContent = readFileSync(envPath, 'utf8');
 	let lines = envContent.split('\n');
 	let changed = false;
@@ -90,7 +91,6 @@ function updateEnvConfig(config: Config) {
 }
 
 function readEnvConfig(): Config {
-	const envPath = resolve(__dirname, '../../ab-server/.env');
 	const envContent = readFileSync(envPath, 'utf8');
 	const lines = envContent.split('\n');
 
@@ -131,7 +131,7 @@ const createMainWindow = async () => {
 		webPreferences: {
 			nodeIntegration: false,
 			contextIsolation: true,
-			preload: resolve(__dirname, '../preload/preload.mjs'),
+			preload: preloadPath,
 			sandbox: false
 		},
 	});

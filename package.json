@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "This is a repo to be able to easily run an instance of the game AIRMASH.",
   "type": "module",
-  "main": "./out/main/main.js",
+  "main": "./out/main/index.js",
   "scripts": {
     "build-bins": "npm run build-bin --prefix ./ab-server && npm run build-bin --prefix ./ab-bot",
     "electron": "electron-vite preview",

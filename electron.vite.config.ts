@@ -3,12 +3,12 @@ import { resolve } from 'node:path';
 const config: import('electron-vite').UserConfig = {
   main: {
 		build: {
-			lib: { entry: './electron/main.ts' }
+			lib: { entry: './electron/main/index.ts' }
 		}
   },
   preload: {
 		build: {
-			lib: { entry: './electron/preload.ts' }
+			lib: { entry: './electron/preload/index.ts' }
 		}
   },
   renderer: {
