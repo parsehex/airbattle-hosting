@@ -1,7 +1,7 @@
 import { app, ipcMain } from 'electron';
 import { readEnvConfig, updateEnvConfig } from './ab-server/config.js';
 import { BotsConfig, ServerConfig } from 'electron/types.js';
-import { restartBots } from './ab-bot/index.js';
+import { getConfig, restartBots } from './ab-bot/index.js';
 import { startServer } from './ab-server/index.js';
 import { processes } from './process.js';
 import { delay } from './utils.js';
@@ -9,7 +9,9 @@ import { getWindow } from './window.js';
 
 export function initIPC() {
 	ipcMain.handle('get-config', async () => {
-		 return readEnvConfig();
+		 const serverCfg = readEnvConfig();
+		 const botsCfg = getConfig();
+		 return Object.assign({}, serverCfg, botsCfg);
 	});
 	
 	ipcMain.on('set-server-config', async (event, serverConfig: ServerConfig) => {
