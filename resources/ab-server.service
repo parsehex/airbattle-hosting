@@ -1,0 +1,15 @@
+[Unit]
+Description=AirBattle Game Server
+After=network.target
+[Service]
+Type=simple
+User=user
+WorkingDirectory=/home/user/airbattle-hosting/ab-server
+EnvironmentFile=/home/user/airbattle-hosting/ab-server/.env
+ExecStart=/home/user/.nvm/versions/node/v22.22.1/bin/node dist/app.js
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+[Install]
+WantedBy=multi-user.target

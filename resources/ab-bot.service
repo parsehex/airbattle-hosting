@@ -1,0 +1,17 @@
+[Unit]
+Description=AirBattle Bots
+After=network.target ab-server.service
+
+[Service]
+Type=simple
+User=user
+WorkingDirectory=/home/user/airbattle-hosting/ab-bot
+ExecStartPre=/bin/sleep 20
+ExecStart=/home/user/.nvm/versions/node/v22.22.1/bin/node dist/app.js --ws=ws://127.0.0.1:3501 --num=12 --type=distribute --character=Aggressive --flag=rainbow
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
