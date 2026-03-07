@@ -1,8 +1,9 @@
 import { defineConfig } from 'vitepress'
 
 export default defineConfig({
-  title: 'Air-Battle',
+  title: 'ΛIR-BΛTTLE',
   description: 'A community-driven fork of AIRMASH — multiplayer aerial combat in your browser.',
+
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/assets/favicon.png' }],
   ],
