@@ -12,9 +12,21 @@
       <img src="/assets/aircraft/tornado.png" class="plane plane-2" alt="" aria-hidden="true" />
       <img src="/assets/aircraft/prowler.png" class="plane plane-3" alt="" aria-hidden="true" />
       <img src="/assets/aircraft/spirit.png" class="plane plane-4" alt="" aria-hidden="true" />
-      <img src="/assets/aircraft/comanche.png" class="plane plane-5" alt="" aria-hidden="true" />
+      
+      <div class="comanche-container plane-5">
+        <img src="/assets/aircraft/comanche.png" class="comanche-body" alt="" aria-hidden="true" />
+        <div class="comanche-rotor"></div>
+      </div>
+
       <img src="/assets/aircraft/tornado.png" class="plane plane-6" alt="" aria-hidden="true" />
       <img src="/assets/aircraft/raptor.png" class="plane plane-7" alt="" aria-hidden="true" />
+
+      <!-- Spritesheet items (powerups, crates, missiles) -->
+      <div class="sprite-item item-upgrade" style="top: 25%; right: 15%; transform: rotate(15deg) scale(0.6);"></div>
+      <div class="sprite-item item-shield" style="bottom: 20%; right: 25%; transform: rotate(-10deg) scale(0.6);"></div>
+      <div class="sprite-item item-rampage" style="top: 70%; left: 8%; transform: rotate(25deg) scale(0.6);"></div>
+      <div class="sprite-item item-missile" style="top: 40%; right: 30%; transform: rotate(-135deg) scale(0.8);"></div>
+      <div class="sprite-item item-crate-shield" style="bottom: 35%; left: 20%; transform: rotate(5deg) scale(0.6);"></div>
     </div>
 
     <!-- Content layer -->
@@ -99,7 +111,7 @@ html, body {
   position: fixed;
   inset: 0;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.45);
 }
 
 /* Aircraft sprites layer */
@@ -141,6 +153,36 @@ html, body {
   width: 110px;
   transform: rotate(20deg);
 }
+
+/* Comanche requires a wrapper for the rotor */
+.comanche-container {
+  position: absolute;
+  opacity: 0.68;
+  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.45));
+}
+.comanche-body {
+  width: 100%;
+  display: block;
+}
+.comanche-rotor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background-image: url('/assets/aircraft.png');
+  background-position: -1452px -4px;
+  background-repeat: no-repeat;
+  will-change: transform;
+  /* Animate the rotor */
+  animation: spin 0.4s linear infinite;
+}
+
+@keyframes spin {
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
 .plane-5 {
   bottom: 10%;
   left: 15%;
@@ -160,6 +202,41 @@ html, body {
   transform: rotate(-45deg) scaleX(-1);
 }
 
+/* Items from spritesheet */
+.sprite-item {
+  position: absolute;
+  opacity: 0.68;
+  filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.5));
+  background-image: url('/assets/items.png');
+  background-repeat: no-repeat;
+}
+
+.item-upgrade {
+  width: 128px;
+  height: 128px;
+  background-position: -4px -268px;
+}
+.item-shield {
+  width: 128px;
+  height: 128px;
+  background-position: -268px -4px;
+}
+.item-rampage {
+  width: 128px;
+  height: 128px;
+  background-position: -404px -4px;
+}
+.item-crate-shield {
+  width: 128px;
+  height: 128px;
+  background-position: -140px -268px;
+}
+.item-missile {
+  width: 64px;
+  height: 128px;
+  background-position: -548px -268px;
+}
+
 /* Content on top */
 .content {
   position: relative;
@@ -175,11 +252,13 @@ html, body {
 .card {
   width: 100%;
   max-width: 800px;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(14, 14, 14, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0 40px 20px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
 }
 
 /* Hero / Header */
