@@ -21,8 +21,8 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 		await runCommand('git', ['pull', '--recurse-submodules'], { cwd: root });
 
 		const newHash = (await runCommandOutput('git', ['rev-parse', 'HEAD'], { cwd: root })).trim();
-		const changedFiles = oldHash !== newHash 
-			? await runCommandOutput('git', ['diff', '--name-only', oldHash, newHash], { cwd: root }) 
+		const changedFiles = oldHash !== newHash
+			? await runCommandOutput('git', ['diff', '--name-only', oldHash, newHash], { cwd: root })
 			: '';
 
 		const gamesJsonExists = await fileExists(
@@ -57,6 +57,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 			);
 		}
 
+		let didRebuild = false;
 		const projects = ['ab-frontend', 'ab-server', 'ab-bot'];
 		for (const project of projects) {
 			const projectPath = path.join(root, project);
@@ -68,8 +69,19 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 				console.log(`\nBuilding ${project}...`);
 				await runCommand('npm', ['install'], { cwd: projectPath });
 				await runCommand('npm', ['run', 'build'], { cwd: projectPath });
+				didRebuild = true;
 			} else {
 				console.log(`\nSkipping ${project} (no changes detected and build outputs exist).`);
+			}
+		}
+
+		if (didRebuild) {
+			console.log('\nRestarting user services (ab-server, ab-bot)...');
+			try {
+				await runCommand('systemctl', ['--user', 'restart', 'ab-server', 'ab-bot']);
+				console.log('Services restarted successfully.');
+			} catch (err) {
+				console.error('Failed to restart services. Ensure systemd user services are running if you are using them.', err);
 			}
 		}
 

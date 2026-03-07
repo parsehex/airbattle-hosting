@@ -1,0 +1,15 @@
+[Unit]
+Description=Airbattle Webhook Listener
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/user/airbattle-hosting
+Environment="WEBHOOK_PORT=8081"
+Environment="WEBHOOK_SECRET=your_github_webhook_secret_here"
+Environment="SERVER_ADMIN_PORT=3501"
+ExecStart=/home/user/.nvm/versions/node/v22.22.1/bin/node scripts/webhook.js
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
