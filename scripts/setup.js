@@ -16,7 +16,14 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 			await runCommand('nvm', ['use', '22']);
 		}
 
+		const oldHash = (await runCommandOutput('git', ['rev-parse', 'HEAD'], { cwd: root })).trim();
+
 		await runCommand('git', ['pull', '--recurse-submodules'], { cwd: root });
+
+		const newHash = (await runCommandOutput('git', ['rev-parse', 'HEAD'], { cwd: root })).trim();
+		const changedFiles = oldHash !== newHash 
+			? await runCommandOutput('git', ['diff', '--name-only', oldHash, newHash], { cwd: root }) 
+			: '';
 
 		const gamesJsonExists = await fileExists(
 			path.join(root, 'ab-frontend/games.json')
@@ -50,15 +57,21 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 			);
 		}
 
-		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-frontend') });
-		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-frontend') });
-		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-server') });
-		await runCommand('npm', ['run', 'build'], { cwd: path.join(root, 'ab-server') });
+		const projects = ['ab-frontend', 'ab-server', 'ab-bot'];
+		for (const project of projects) {
+			const projectPath = path.join(root, project);
+			const hasChanges = changedFiles.includes(`${project}/`);
+			const hasNodeModules = await fileExists(path.join(projectPath, 'node_modules'));
+			const hasDist = await fileExists(path.join(projectPath, 'dist'));
 
-		await runCommand('npm', ['install'], { cwd: path.join(root, 'ab-bot') });
-		await runCommand('npm', ['run', 'build'], {
-			cwd: path.join(root, 'ab-bot'),
-		});
+			if (hasChanges || !hasNodeModules || !hasDist) {
+				console.log(`\nBuilding ${project}...`);
+				await runCommand('npm', ['install'], { cwd: projectPath });
+				await runCommand('npm', ['run', 'build'], { cwd: projectPath });
+			} else {
+				console.log(`\nSkipping ${project} (no changes detected and build outputs exist).`);
+			}
+		}
 
 		console.log('Setup complete.');
 		console.log(
