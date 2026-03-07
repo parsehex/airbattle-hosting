@@ -60,7 +60,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 		const projects = ['ab-frontend', 'ab-server', 'ab-bot'];
 		for (const project of projects) {
 			const projectPath = path.join(root, project);
-			const hasChanges = changedFiles.includes(`${project}/`);
+			const hasChanges = changedFiles.split('\n').some(file => file === project || file.startsWith(`${project}/`));
 			const hasNodeModules = await fileExists(path.join(projectPath, 'node_modules'));
 			const hasDist = await fileExists(path.join(projectPath, 'dist'));
 
