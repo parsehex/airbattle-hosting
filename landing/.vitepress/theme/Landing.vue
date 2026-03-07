@@ -24,7 +24,7 @@
       <!-- Spritesheet items (powerups, crates, missiles) -->
       <div class="sprite-item item-upgrade" style="top: 25%; right: 15%; transform: rotate(15deg) scale(0.6);"></div>
       <div class="sprite-item item-shield" style="bottom: 20%; right: 25%; transform: rotate(-10deg) scale(0.6);"></div>
-      <div class="sprite-item item-rampage" style="top: 70%; left: 8%; transform: rotate(25deg) scale(0.6);"></div>
+      <div class="sprite-item item-crate-rampage" style="top: 70%; left: 8%; transform: rotate(25deg) scale(0.6);"></div>
       <div class="sprite-item item-missile" style="top: 40%; right: 30%; transform: rotate(-135deg) scale(0.8);"></div>
       <div class="sprite-item item-crate-shield" style="bottom: 35%; left: 20%; transform: rotate(5deg) scale(0.6);"></div>
     </div>
@@ -221,10 +221,10 @@ html, body {
   height: 128px;
   background-position: -268px -4px;
 }
-.item-rampage {
+.item-crate-rampage {
   width: 128px;
   height: 128px;
-  background-position: -404px -4px;
+  background-position: -276px -268px;
 }
 .item-crate-shield {
   width: 128px;
