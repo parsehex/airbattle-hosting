@@ -19,7 +19,10 @@
     "build:bot": "npm run build --prefix ./ab-bot",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "landing:dev": "vitepress dev landing",
+    "landing:build": "vitepress build landing",
+    "landing:preview": "vitepress preview landing"
   },
   "keywords": [],
   "author": "",
