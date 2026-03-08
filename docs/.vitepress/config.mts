@@ -5,7 +5,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Airbattle Hosting",
+  title: "Air-Battle Hosting",
   description: "",
   base: '/',
   vite: {
