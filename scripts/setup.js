@@ -7,6 +7,7 @@ import {
 } from './lib.js';
 import path from 'path';
 import { fileURLToPath } from 'node:url';
+import fs from 'node:fs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const args = process.argv.slice(2);
