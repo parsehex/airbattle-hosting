@@ -12,7 +12,7 @@
       <img src="/assets/aircraft/tornado.png" class="plane plane-2" alt="" aria-hidden="true" />
       <img src="/assets/aircraft/prowler.png" class="plane plane-3" alt="" aria-hidden="true" />
       <img src="/assets/aircraft/spirit.png" class="plane plane-4" alt="" aria-hidden="true" />
-      
+
       <div class="comanche-container plane-5">
         <img src="/assets/aircraft/comanche.png" class="comanche-body" alt="" aria-hidden="true" />
         <div class="comanche-rotor"></div>
@@ -252,9 +252,9 @@ html, body {
 .card {
   width: 100%;
   max-width: 800px;
-  background: rgba(14, 14, 14, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(14, 14, 14, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0 40px 20px;

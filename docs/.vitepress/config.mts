@@ -7,7 +7,7 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineConfig({
   title: "Airbattle Hosting",
   description: "",
-  base: process.env.NODE_ENV === 'production' ? '/airbattle-hosting/' : '/',
+  base: '/',
   vite: {
     plugins: [
       // tsconfigPaths(),
