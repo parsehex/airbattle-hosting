@@ -37,11 +37,12 @@ Full A-B project: [`parsehex/airbattle-hosting`](https://github.com/parsehex/air
 </details>
 
 <details>
-<summary>Differences</summary>
+<summary>Differences I can think of</summary>
 
 - Air-Battle uses [Spatie Bots](https://github.com/parsehex/ab-bot), which act differently and can be updated more easily
 - Quick Respawn hotkey: press `Shift` + (`1` - `5`) to respawn as a specific ship
-- Players that are SuperUser (admin) are tagged as `SU` for everyone
+- SuperUsers (admin) are tagged visually for all players
+- If you get disconnected and click Reconnect, past chat messages are kept
 </details>
 
 <details>
@@ -60,6 +61,9 @@ Most of these ideas were made in a vacuum without feedback, so I'd like to hear 
 - I'd love to bring back the modding scene of the early days
 	- Mod API to hook into the game
 	- Directory of mods (maybe installable- I think that's literally XSS tho)
+- Bot updates
+	- Big fan of `#buddy` (there might be a WIP one, can't recall)
+	- Would love bots to strategize a bit
 - More public spaces
 	- Ways to chat on the site itself
 		- Chat feed (+ player list?) on home/game page ?
@@ -69,7 +73,7 @@ Most of these ideas were made in a vacuum without feedback, so I'd like to hear 
 <details>
 <summary>My level of commitment</summary>
 
-I keep coming back to this game over the years so there's some longevity here, but I'm trying to sort out my messy life and mostly just need somewhere to be me during that.
+I keep coming back to this game over the years so there's some longevity to my interest, but I'm sorting out my messy life and mostly just need somewhere to be me during that.
 
 I can't / won't promise to work on things for the game beyond what I choose to do. I need an outlet that I'm hoping this will be, but I finally got work doing web-dev so this isn't my only focus (though I hope they're symbiotic for my mental health).
 </details>
