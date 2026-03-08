@@ -65,10 +65,13 @@ Most of these ideas were made in a vacuum without feedback, so I'd like to hear 
 - Bot updates
 	- Big fan of `#buddy` (there might be a WIP one, can't recall)
 	- Would love bots to strategize a bit
+	- Bots drop the flag to better team mate (e.g. heli drops to goli)
+	- Better situational awareness 🤞
 - More public spaces
 	- Ways to chat on the site itself
 		- Chat feed (+ player list?) on home/game page ?
-	- Public ban logs (& appeals ?)
+	- Public ban logs (+ appeals ?)
+- Seasons or other time-based rankings/changes
 </details>
 
 <details>

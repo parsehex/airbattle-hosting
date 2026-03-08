@@ -61,6 +61,12 @@ const isForce = args.includes('--force') || args.includes('-f');
 			);
 		}
 
+		const envBotsExists = await fileExists(path.join(root, '.env.bots'));
+		if (!envBotsExists) {
+			console.log('\nCreating default .env.bots with 4 bots...');
+			fs.writeFileSync(path.join(root, '.env.bots'), 'NUM_BOTS=4\n');
+		}
+
 		const rebuiltProjects = [];
 		const projects = ['ab-frontend', 'ab-server', 'ab-bot'];
 		for (const project of projects) {
