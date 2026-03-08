@@ -57,7 +57,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 			);
 		}
 
-		let didRebuild = false;
+		const rebuiltProjects = [];
 		const projects = ['ab-frontend', 'ab-server', 'ab-bot'];
 		for (const project of projects) {
 			const projectPath = path.join(root, project);
@@ -69,13 +69,40 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 				console.log(`\nBuilding ${project}...`);
 				await runCommand('npm', ['install'], { cwd: projectPath });
 				await runCommand('npm', ['run', 'build'], { cwd: projectPath });
-				didRebuild = true;
+				rebuiltProjects.push(project);
 			} else {
 				console.log(`\nSkipping ${project} (no changes detected and build outputs exist).`);
 			}
 		}
 
-		if (didRebuild) {
+		const rootProjects = [
+			{ name: 'docs', command: 'docs:build', outPath: 'docs/.vitepress/dist' },
+			{ name: 'landing', command: 'landing:build', outPath: 'landing/.vitepress/dist' }
+		];
+		let rootDependenciesInstalled = false;
+
+		for (const project of rootProjects) {
+			const hasChanges = changedFiles.split('\n').some(file => file === project.name || file.startsWith(`${project.name}/`));
+			const hasDist = await fileExists(path.join(root, project.outPath));
+
+			if (hasChanges || !hasDist) {
+				if (!rootDependenciesInstalled) {
+					const hasRootNodeModules = await fileExists(path.join(root, 'node_modules'));
+					if (!hasRootNodeModules || changedFiles.includes('package.json') || changedFiles.includes('package-lock.json')) {
+						console.log('\nInstalling root dependencies...');
+						await runCommand('npm', ['install'], { cwd: root });
+					}
+					rootDependenciesInstalled = true;
+				}
+				console.log(`\nBuilding ${project.name}...`);
+				await runCommand('npm', ['run', project.command], { cwd: root });
+				rebuiltProjects.push(project.name);
+			} else {
+				console.log(`\nSkipping ${project.name} (no changes detected and build outputs exist).`);
+			}
+		}
+
+		if (rebuiltProjects.includes('ab-server') || rebuiltProjects.includes('ab-bot')) {
 			console.log('\nRestarting user services (ab-server, ab-bot)...');
 			try {
 				await runCommand('systemctl', ['--user', 'restart', 'ab-server', 'ab-bot']);
