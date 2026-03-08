@@ -4,7 +4,7 @@ layout: home
 
 hero:
   name: "Air-Battle Hosting"
-  tagline: Run AIRMASH / Air-Battle on your own PC or server
+  tagline: Run Air-Battle / AIRMASH on your own
   actions:
     - theme: brand
       text: Getting Started
@@ -21,3 +21,5 @@ hero:
 #   - title: Feature C
 #     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
+
+**Note** that this documentation hasn't been updated for about a year. Work in progress!

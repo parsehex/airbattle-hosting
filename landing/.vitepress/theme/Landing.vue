@@ -39,14 +39,6 @@
         <main class="main-content">
           <Content />
         </main>
-
-        <footer class="landing-footer" style="display: none">
-          <div class="footer-links">
-            <a href="https://game.air-battle.net" class="footer-link play-link">Play the Game</a>
-            <a href="https://docs.air-battle.net" class="footer-link">Documentation</a>
-            <a href="https://github.com/parsehex/airbattle-hosting" class="footer-link" target="_blank" rel="noopener">GitHub</a>
-          </div>
-        </footer>
       </div>
     </div>
   </div>
@@ -62,6 +54,10 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+}
+
+ul {
+  list-style-type: disc;
 }
 
 /* Montserrat font from game assets */
@@ -85,6 +81,56 @@ html, body {
   font-weight: 600;
   font-style: normal;
   font-display: swap;
+}
+
+/* Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 60px 0;
+  flex-wrap: wrap;
+
+  hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 16px 0;
+  }
+}
+
+.btn {
+  padding: 12px 28px;
+  border-radius: 6px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: all 0.2s;
+  font-size: 0.9rem;
+}
+
+.btn-primary {
+  background: #6bbd6b;
+  color: #000 !important;
+  border: none;
+  box-shadow: 0 4px 14px rgba(107, 189, 107, 0.4);
+}
+
+.btn-primary:hover {
+  background: #8ed98e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(107, 189, 107, 0.6);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 </style>
 
@@ -264,7 +310,7 @@ html, body {
 /* Hero / Header */
 .hero {
   text-align: center;
-  padding: 80px 0 40px;
+  padding-top: 80px;
 }
 
 .logo {
@@ -285,7 +331,6 @@ html, body {
 /* Main markdown content area */
 .main-content {
   flex: 1;
-  padding: 20px 0 60px;
 }
 
 .main-content :deep(h1),
@@ -351,6 +396,103 @@ html, body {
   padding: 2px 6px;
   border-radius: 3px;
   font-size: 0.9em;
+}
+
+
+
+/* 2-Column Layout */
+.main-content :deep(.info-grid) {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .main-content :deep(.info-grid) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+/* Details / Summary Styling */
+.main-content :deep(details) {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  transition: all 0.3s ease;
+}
+
+.main-content :deep(details[open]) {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.main-content :deep(summary) {
+  padding: 16px 20px;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.main-content :deep(summary::-webkit-details-marker) {
+  display: none;
+}
+
+.main-content :deep(summary::before) {
+  content: '▶';
+  display: inline-block;
+  margin-right: 12px;
+  font-size: 0.7em;
+  transition: transform 0.2s;
+  color: #6bbd6b;
+}
+
+.main-content :deep(details[open] summary::before) {
+  transform: rotate(90deg);
+}
+
+.main-content :deep(details > div),
+.main-content :deep(details > p),
+.main-content :deep(details > ul) {
+  padding: 0 20px 20px 48px;
+  margin: 0;
+}
+
+/* Alert / Custom Blockquote Styling */
+.main-content :deep(blockquote) {
+  border: 1px solid rgba(255, 100, 100, 0.2);
+  background: rgba(255, 50, 50, 0.05);
+  border-left: 4px solid #ff4d4d;
+  color: #ffcccc;
+}
+
+.main-content :deep(blockquote strong) {
+  color: #ff6666;
+}
+
+/* Callout Section */
+.main-content :deep(.callout) {
+  background: rgba(107, 189, 107, 0.05);
+  border: 1px solid rgba(107, 189, 107, 0.2);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.main-content :deep(.callout h4) {
+  margin: 0 0 16px;
+  color: #fff;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.main-content :deep(.callout .btn) {
+  display: inline-block;
 }
 
 /* Footer */
