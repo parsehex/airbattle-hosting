@@ -97,6 +97,8 @@ Airmash felt like it had a "thing" about it and I want to continue the same spir
 
 First thing I want to say is that I continue to admire the gargantuan codebase(s) you've been working in- seriously. In the age of AI crutches (🙋‍♂️) I feel very humbled at the system you made from close-to-nothing, and I genuinely hope I can treat your work right.
 
+(^ Goes to anyone else like [spatie](https://github.com/spatiebot) that might read this one day. I stand on the shoulders of giants.)
+
 Next, I agree with [Nebulous Narwhal](https://github.com/wight-airmash/ab-server/pull/130) that updating to use a newer version of Node.js not only works but might be faster - I did some naive benchmarks in the past and recall better perf. on some dimensions. The patch definitely feels fragile though so I'd be more than happy to hear what you think about the weak points.
 
 I'm more monkey-like when it comes to putting things together and you're clearly more experienced than me in a lot of ways, so I'd be up to talk dev-stuff if you're ever interested. I can and will gloss you more but I'll stop here.
