@@ -23,7 +23,8 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
+      { text: 'Docs Home', link: '/' },
+      { text: 'Main Site', link: 'https://air-battle.net' },
     ],
     lastUpdated: {
       text: 'Last Updated',

@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "Airbattle Hosting"
-  tagline: Run AIRMASH / Airbattle on your own PC or server
+  name: "Air-Battle Hosting"
+  tagline: Run AIRMASH / Air-Battle on your own PC or server
   actions:
     - theme: brand
       text: Getting Started
