@@ -46,25 +46,34 @@ const isForce = args.includes('--force') || args.includes('-f');
 			);
 		}
 
-		const envExists = await fileExists(path.join(root, 'ab-server/.env'));
-		const envSymExists = await fileExists(path.join(root, '.env.server'));
-		if (!envExists) {
+		const envSrvExists = await fileExists(path.join(root, 'ab-server/.env'));
+		const envSrvSymExists = await fileExists(path.join(root, '.env.server'));
+		if (!envSrvExists) {
 			await copy(
 				path.join(root, 'ab-server/.env.example'),
 				path.join(root, 'ab-server/.env')
 			);
 		}
-		if (!envSymExists) {
+		if (!envSrvSymExists) {
 			await symlink(
 				path.join(root, 'ab-server/.env'),
 				path.join(root, '.env.server')
 			);
 		}
 
-		const envBotsExists = await fileExists(path.join(root, '.env.bots'));
+		const envBotsExists = await fileExists(path.join(root, 'ab-bot/.env'));
+		const envBotsSymExists = await fileExists(path.join(root, '.env.bots'));
 		if (!envBotsExists) {
-			console.log('\nCreating default .env.bots with 4 bots...');
-			fs.writeFileSync(path.join(root, '.env.bots'), 'NUM_BOTS=4\n');
+			await copy(
+				path.join(root, '.env.bots.example'),
+				path.join(root, 'ab-bot/.env')
+			);
+		}
+		if (!envBotsSymExists) {
+			await symlink(
+				path.join(root, 'ab-bot/.env'),
+				path.join(root, '.env.bots')
+			);
 		}
 
 		const rebuiltProjects = [];
