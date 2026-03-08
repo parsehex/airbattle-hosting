@@ -63,9 +63,7 @@ Most of these ideas were made in a vacuum without feedback, so I'd like to hear 
 	- Mod API to hook into the game
 	- Directory of mods (maybe installable- I think that's literally XSS tho)
 - Bot updates
-	- Big fan of `#buddy` (there might be a WIP one, can't recall)
-	- Would love bots to strategize a bit
-	- Bots drop the flag to better team mate (e.g. heli drops to goli)
+	- Would love bots to strategize more
 	- Better situational awareness 🤞
 - More public spaces
 	- Ways to chat on the site itself
