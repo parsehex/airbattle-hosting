@@ -43,6 +43,7 @@ Full A-B project: [`parsehex/airbattle-hosting`](https://github.com/parsehex/air
 - Quick Respawn hotkey: press `Shift` + (`1` - `5`) to respawn as a specific ship
 - SuperUsers (admin) are tagged visually for all players
 - If you get disconnected and click Reconnect, past chat messages are kept
+- Admin(s) can run `/update` to update the server + restart if needed
 </details>
 
 <details>

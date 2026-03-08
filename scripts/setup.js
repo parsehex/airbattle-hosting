@@ -9,6 +9,9 @@ import path from 'path';
 import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
+const args = process.argv.slice(2);
+const isForce = args.includes('--force') || args.includes('-f');
+
 (async () => {
 	try {
 		const nodeVersion = await runCommandOutput('node', ['--version']);
@@ -65,7 +68,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 			const hasNodeModules = await fileExists(path.join(projectPath, 'node_modules'));
 			const hasDist = await fileExists(path.join(projectPath, 'dist'));
 
-			if (hasChanges || !hasNodeModules || !hasDist) {
+			if (isForce || hasChanges || !hasNodeModules || !hasDist) {
 				console.log(`\nBuilding ${project}...`);
 				await runCommand('npm', ['install'], { cwd: projectPath });
 				await runCommand('npm', ['run', 'build'], { cwd: projectPath });
@@ -85,10 +88,10 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 			const hasChanges = changedFiles.split('\n').some(file => file === project.name || file.startsWith(`${project.name}/`));
 			const hasDist = await fileExists(path.join(root, project.outPath));
 
-			if (hasChanges || !hasDist) {
+			if (isForce || hasChanges || !hasDist) {
 				if (!rootDependenciesInstalled) {
 					const hasRootNodeModules = await fileExists(path.join(root, 'node_modules'));
-					if (!hasRootNodeModules || changedFiles.includes('package.json') || changedFiles.includes('package-lock.json')) {
+					if (isForce || !hasRootNodeModules || changedFiles.includes('package.json') || changedFiles.includes('package-lock.json')) {
 						console.log('\nInstalling root dependencies...');
 						await runCommand('npm', ['install'], { cwd: root });
 					}
@@ -102,7 +105,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 			}
 		}
 
-		if (rebuiltProjects.includes('ab-server') || rebuiltProjects.includes('ab-bot')) {
+		if (rebuiltProjects.includes('ab-server')) {
 			console.log('\nRestarting user services (ab-server, ab-bot)...');
 			try {
 				await runCommand('systemctl', ['--user', 'restart', 'ab-server', 'ab-bot']);
@@ -110,6 +113,19 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 			} catch (err) {
 				console.error('Failed to restart services. Ensure systemd user services are running if you are using them.', err);
 			}
+		} else if (rebuiltProjects.includes('ab-bot')) {
+			console.log('\nRestarting ab-bot service...');
+			try {
+				await runCommand('systemctl', ['--user', 'restart', 'ab-bot']);
+				console.log('Bot service restarted successfully.');
+			} catch (err) {
+				console.error('Failed to restart ab-bot service.', err);
+			}
+		}
+
+		if (rebuiltProjects.length > 0) {
+			const summaryPath = path.join(root, 'ab-server/update-summary.json');
+			fs.writeFileSync(summaryPath, JSON.stringify({ rebuiltProjects }, null, 2));
 		}
 
 		console.log('Setup complete.');
