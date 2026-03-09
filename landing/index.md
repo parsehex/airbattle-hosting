@@ -44,12 +44,11 @@ Full A-B project: [`parsehex/airbattle-hosting`](https://github.com/parsehex/air
 - SuperUsers (admin) are tagged visually for all players
 - If you get disconnected and click Reconnect, past chat messages are kept
 - Admin(s) can run `/update` to update the server + restart if needed
+- Bots strategize between `#capture` and `#defend` depending on score + flag-passing on their own
 </details>
 
 <details>
 <summary>My changes hope-list</summary>
-
-Most of these ideas were made in a vacuum without feedback, so I'd like to hear other opinions on them.
 
 - Browser Extension
 	- See the player and teams counts + score
