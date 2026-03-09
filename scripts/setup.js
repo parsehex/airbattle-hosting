@@ -95,7 +95,6 @@ const isForce = args.includes('--force') || args.includes('-f');
 		}
 
 		const rootProjects = [
-			{ name: 'docs', command: 'docs:build', outPath: 'docs/.vitepress/dist' },
 			{ name: 'landing', command: 'landing:build', outPath: 'landing/.vitepress/dist' }
 		];
 		let rootDependenciesInstalled = false;
