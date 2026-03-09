@@ -76,7 +76,9 @@ Full A-B project: [`parsehex/airbattle-hosting`](https://github.com/parsehex/air
 
 I keep coming back to this game over the years so there's some longevity to my interest, but I'm sorting out my messy life and mostly just need somewhere to be me during that.
 
-I can't / won't promise to work on things for the game beyond what I choose to do. I need an outlet that I'm hoping this will be, but I finally got work doing web-dev so this isn't my only focus (though I hope they're symbiotic for my mental health).
+I can't / won't promise to work on things for the game beyond what I choose to do. I need an outlet that I'm hoping this will be, but I finally got a start doing web-dev work so `A-B` isn't my only focus (though I hope they're symbiotic for my mental health's sake).
+
+That said, I need to practice putting stuff down so I'm going to intentionally go at my own pace / slow.
 </details>
 
 <details>
