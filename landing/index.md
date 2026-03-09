@@ -103,6 +103,8 @@ Next, I agree with [Nebulous Narwhal](https://github.com/wight-airmash/ab-server
 I'm more monkey-like when it comes to putting things together and you're clearly more experienced than me in a lot of ways, so I'd be up to talk dev-stuff if you're ever interested. I can and will gloss you more but I'll stop here.
 </details>
 
+I hope that this gives an idea of what you might expect.
+
 </div>
 </div>
 
