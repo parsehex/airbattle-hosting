@@ -42,9 +42,16 @@ Full A-B project: [`parsehex/airbattle-hosting`](https://github.com/parsehex/air
 - Air-Battle uses [Spatie Bots](https://github.com/parsehex/ab-bot), which act differently and can be updated more easily
 - Quick Respawn hotkey: press `Shift` + (`1` - `5`) to respawn as a specific ship
 - SuperUsers (admin) are tagged visually for all players
-- If you get disconnected and click Reconnect, past chat messages are kept
-- Admin(s) can run `/update` to update the server + restart if needed
+- Better reconnecting
+	- Past chat messages are kept
+	- Can try to Reconnect again after 3s
+- Admin(s) can use `/update` to update the server + restart if needed and `/bots` to change bot settings
 - Bots strategize between `#capture` and `#defend` depending on score + flag-passing on their own
+- Bot carriers pass the flag to teammates
+	- A Heli bot will seek and drop to a Goli
+	- Non-Goli bot carriers will drop to a player (fly on top of one)
+- Ship icons when you press `Tab` to know what you're up against
+- Click to switch players in spectate mode
 </details>
 
 <details>
