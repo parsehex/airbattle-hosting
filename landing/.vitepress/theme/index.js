@@ -1,8 +1,9 @@
 import Landing from './Landing.vue'
+import ServerStatus from './components/ServerStatus.vue'
 
 export default {
   Layout: Landing,
   enhanceApp({ app }) {
-    // Register custom Vue components here if needed
+    app.component('ServerStatus', ServerStatus)
   },
 }
