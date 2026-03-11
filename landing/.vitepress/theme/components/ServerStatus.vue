@@ -1,12 +1,12 @@
 <template>
   <div class="server-status" v-if="status">
     <span class="count-item">
-      <span class="value">{{ status.players }}</span> 
+      <span class="value">{{ players }}</span>
       <span class="label">players</span>
     </span>
     <span class="divider">|</span>
     <span class="count-item">
-      <span class="value">{{ status.bots }}</span> 
+      <span class="value">{{ bots }}</span>
       <span class="label">bots</span>
     </span>
   </div>
@@ -16,6 +16,9 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 const status = ref(null)
+const players = ref(0)
+const bots = ref(0)
+
 let interval = null
 
 const fetchStatus = async () => {
@@ -26,7 +29,11 @@ const fetchStatus = async () => {
       }
     })
     if (response.ok) {
-      status.value = await response.json()
+      const data = await response.json()
+      status.value = data
+      bots.value = data.bots
+      if (bots.value > 0 && data.players >= bots.value) data.players -= bots.value
+      players.value = data.players
     }
   } catch (err) {
     console.error('Failed to fetch server status:', err)
@@ -49,7 +56,6 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 8px;
   font-size: 0.85rem;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.5);
