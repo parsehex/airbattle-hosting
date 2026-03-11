@@ -76,3 +76,56 @@
     @apply bg-background text-foreground;
   }
 }
+
+:root {
+  --vp-c-brand-1: #6bbd6b;
+  --vp-c-brand-2: #8ed98e;
+  --vp-c-brand-3: #58a658;
+  
+  --vp-home-hero-name-color: var(--vp-c-brand-1);
+  --vp-home-hero-image-filter: drop-shadow(0 0 12px rgba(107, 189, 107, 0.4));
+}
+
+.VPHome {
+  background: transparent !important;
+}
+
+.VPContent {
+  background: transparent !important;
+}
+
+.VPNavBar {
+  background: rgba(14, 14, 14, 0.8) !important;
+  backdrop-filter: blur(8px);
+}
+
+.VPSidebar {
+  background: rgba(14, 14, 14, 0.8) !important;
+  backdrop-filter: blur(8px);
+}
+
+.VPFooter {
+  background: rgba(14, 14, 14, 0.8) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Custom card-like look for main content */
+.VPDoc {
+  background: rgba(14, 14, 14, 0.72);
+  backdrop-filter: blur(4px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px !important;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-width: 960px) {
+  .VPDoc {
+    padding: 24px !important;
+    border-radius: 0;
+    margin: 0;
+    background: rgba(14, 14, 14, 0.85);
+  }
+}

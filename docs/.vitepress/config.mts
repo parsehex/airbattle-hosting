@@ -5,9 +5,14 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Air-Battle Hosting",
-  description: "",
+  title: "Air-Battle Docs",
+  description: "Documentation for the Air-Battle project.",
   base: '/',
+  head: [
+    ['link', { rel: 'icon', type: 'image/png', href: '/assets/favicon.png' }],
+    ['link', { rel: 'preload', href: '/assets/montserrat-semibold.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
+    ['link', { rel: 'preload', href: '/assets/montserrat-bold.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
+  ],
   vite: {
     plugins: [
       // tsconfigPaths(),
