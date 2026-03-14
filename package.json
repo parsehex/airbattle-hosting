@@ -10,6 +10,7 @@
     "electron:dev": "electron-vite dev",
     "electron:build": "electron-vite build",
     "start": "node ./scripts/start.js",
+    "botlog:stream": "node ./scripts/bot-log-stream.js",
     "setup": "node ./scripts/setup.js",
     "bots": "npm start --prefix ./ab-bot",
     "rebuild-docker:win": "docker-compose down ; docker-compose build ; docker-compose up",
