@@ -5,12 +5,13 @@ After=network.target ab-server.service
 [Service]
 Type=simple
 WorkingDirectory=/home/user/airbattle-hosting/ab-bot
+ExecStartPre=/bin/bash -c "mv /home/user/airbattle-hosting/logs/bots.log /home/user/airbattle-hosting/logs/bots.log.$(date +%s) 2>/dev/null || true"
 ExecStartPre=/bin/sleep 20
 ExecStart=/home/user/.nvm/versions/node/v22.22.1/bin/node dist/app.js --ws=ws://127.0.0.1:3501 --type=distribute --character=Aggressive --flag=jolly
 Restart=on-failure
 RestartSec=10
-StandardOutput=journal
-StandardError=journal
+StandardOutput=file:/home/user/airbattle-hosting/logs/bots.log
+StandardError=file:/home/user/airbattle-hosting/logs/bots.log
 
 [Install]
 WantedBy=default.target
