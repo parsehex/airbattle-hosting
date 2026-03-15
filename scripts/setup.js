@@ -140,7 +140,7 @@ const isForce = args.includes('--force') || args.includes('-f');
 
 		if (rebuiltProjects.length > 0) {
 			const summaryPath = path.join(root, 'ab-server/update-summary.json');
-			fs.writeFileSync(summaryPath, JSON.stringify({ rebuiltProjects }, null, 2));
+			fs.writeFileSync(summaryPath, JSON.stringify({ rebuiltProjects, newHash }, null, 2));
 		}
 
 		console.log('Setup complete.');
