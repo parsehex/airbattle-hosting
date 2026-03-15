@@ -36,6 +36,8 @@ The goal with `Air-Battle` is to combine and modernize the parts that make up mo
 	- Fork: [ab-bot](https://github.com/parsehex/ab-bot)
 
 Full A-B project: [`parsehex/airbattle-hosting`](https://github.com/parsehex/airbattle-hosting)
+
+Read more here: [About Air-Battle](https://docs.air-battle.net/about)
 </details>
 
 <details>
