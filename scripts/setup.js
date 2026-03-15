@@ -12,6 +12,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const args = process.argv.slice(2);
 const isForce = args.includes('--force') || args.includes('-f');
+let newHash = null;
 
 (async () => {
 	try {
@@ -24,7 +25,7 @@ const isForce = args.includes('--force') || args.includes('-f');
 
 		await runCommand('git', ['pull', '--recurse-submodules'], { cwd: root });
 
-		const newHash = (await runCommandOutput('git', ['rev-parse', 'HEAD'], { cwd: root })).trim();
+		newHash = (await runCommandOutput('git', ['rev-parse', 'HEAD'], { cwd: root })).trim();
 		const changedFiles = oldHash !== newHash
 			? await runCommandOutput('git', ['diff', '--name-only', oldHash, newHash], { cwd: root })
 			: '';
