@@ -2,7 +2,10 @@ This is an expansion on what I've been working on for about a year: making moder
 
 <div class="callout main-game">
   <h4>Play on the tried-and-true battleground at:</h4>
-  <a href="https://airmash.rocks" class="btn btn-secondary">airmash.rocks</a>
+  <a href="https://airmash.rocks" class="airmash-link">
+		<img src="/assets/airmash_logo.png" alt="Airmash" class="airmash-logo" />
+		<span>airmash.rocks</span>
+	</a>
 </div>
 
 <div class="info-grid">
@@ -18,6 +21,7 @@ This is an expansion on what I've been working on for about a year: making moder
 	<a href="https://docs.air-battle.net" class="btn btn-secondary">
 		Docs
 	</a>
+	<small>Work in progress</small>
 </div>
 
 </div>
@@ -29,15 +33,16 @@ This is an expansion on what I've been working on for about a year: making moder
 The goal with `Air-Battle` is to combine and modernize the parts that make up modern-day Airmash:
 
 - [`airmash-frontend`](https://github.com/airmash-refugees/airmash-frontend) by [airmash-refugees](https://github.com/airmash-refugees/airmash-frontend)
-	- Fork: [ab-frontend](https://github.com/parsehex/ab-frontend)
+  - Fork: [ab-frontend](https://github.com/parsehex/ab-frontend)
 - [`ab-server`](https://github.com/wight-airmash/ab-server) by [wight-airmash](https://github.com/wight-airmash)
-	- Fork: [ab-server](https://github.com/parsehex/ab-server)
+  - Fork: [ab-server](https://github.com/parsehex/ab-server)
 - [`AB-bot`](https://github.com/spatiebot/ab-bot) by [spatiebot](https://github.com/spatiebot)
-	- Fork: [ab-bot](https://github.com/parsehex/ab-bot)
+  - Fork: [ab-bot](https://github.com/parsehex/ab-bot)
 
 Full A-B project: [`parsehex/airbattle-hosting`](https://github.com/parsehex/airbattle-hosting)
 
 Read more here: [About Air-Battle](https://docs.air-battle.net/about)
+
 </details>
 
 <details>
@@ -47,13 +52,13 @@ Read more here: [About Air-Battle](https://docs.air-battle.net/about)
 - Quick Respawn hotkey: press `Shift` + (`1` - `5`) to respawn as a specific ship
 - SuperUsers (admin) are tagged visually for all players
 - Better reconnecting
-	- Past chat messages are kept
-	- Can try to Reconnect again after 3s
+  - Past chat messages are kept
+  - Can try to Reconnect again after 3s
 - Admin(s) can use `/update` to update the server + restart if needed and `/bots` to change bot settings
 - Bots strategize between `#capture` and `#defend` depending on score + flag-passing on their own
 - Bot carriers pass the flag to teammates
-	- A Heli bot will seek and drop to a Goli
-	- Non-Goli bot carriers will drop to a player (fly on top of one)
+  - A Heli bot will seek and drop to a Goli
+  - Non-Goli bot carriers will drop to a player (fly on top of one)
 - Ship icons when you press `Tab` to know what you're up against
 - Click to switch players in spectate mode
 </details>
@@ -62,23 +67,23 @@ Read more here: [About Air-Battle](https://docs.air-battle.net/about)
 <summary>My changes hope-list</summary>
 
 - Browser Extension
-	- See the player and teams counts + score
-	- Leaderboard?
-	- View live chat (guest chat ?)
+  - See the player and teams counts + score
+  - Leaderboard?
+  - View live chat (guest chat ?)
 - Easier to host servers with instrtuctions/docs
-	- Server Directory ?
-	- Single Player / Desktop mode
-		- Blegh Electron ikik but no one has to use it, ignore the scientist in jurassic park.
+  - Server Directory ?
+  - Single Player / Desktop mode
+    - Blegh Electron ikik but no one has to use it, ignore the scientist in jurassic park.
 - I'd love to bring back the modding scene of the early days
-	- Mod API to hook into the game
-	- Directory of mods (maybe installable- I think that's literally XSS tho)
+  - Mod API to hook into the game
+  - Directory of mods (maybe installable- I think that's literally XSS tho)
 - Bot updates
-	- Would love bots to strategize more
-	- Better situational awareness 🤞
+  - Would love bots to strategize more
+  - Better situational awareness 🤞
 - More public spaces
-	- Ways to chat on the site itself
-		- Chat feed (+ player list?) on home/game page ?
-	- Public ban logs (+ appeals ?)
+  - Ways to chat on the site itself
+    - Chat feed (+ player list?) on home/game page ?
+  - Public ban logs (+ appeals ?)
 - Seasons or other time-based rankings/changes
 </details>
 
@@ -90,6 +95,7 @@ I keep coming back to this game over the years so there's some longevity to my i
 I can't / won't promise to work on things for the game beyond what I choose to do. I need an outlet that I'm hoping this will be, but I finally got a start doing web-dev work so `A-B` isn't my only focus (though I hope they're symbiotic for my mental health's sake).
 
 That said, I need to practice putting stuff down so I'm going to intentionally go at my own pace / slow.
+
 </details>
 
 <details>
@@ -100,6 +106,7 @@ Yep it is, which I like! Airmash's place is solid and that should stay true -- t
 I'm working on this because I want a space of my own to hang out and build on. I like the game enough to keep playing alone but I welcome anyone that wants to come along for the ride.
 
 Airmash felt like it had a "thing" about it and I want to continue the same spirit; this is my stab at that.
+
 </details>
 
 <details>
@@ -111,7 +118,8 @@ First thing I want to say is that I continue to admire the gargantuan codebase(s
 
 Next, I agree with [Nebulous Narwhal](https://github.com/wight-airmash/ab-server/pull/130) that updating to use a newer version of Node.js not only works but might be faster - I did some naive benchmarks in the past and recall better perf. on some dimensions. The patch definitely feels fragile though so I'd be more than happy to hear what you think about the weak points.
 
-I'm more monkey-like when it comes to putting things together and you're clearly more experienced than me in a lot of ways, so I'd be up to talk dev-stuff if you're ever interested. I can and will gloss you more but I'll stop here.
+I'm clumsier when it comes to putting things together and you're clearly more experienced than me in a lot of ways, so I'd be up to talk dev-stuff if you're ever interested. The compliments don't stop there but I'll take the cue.
+
 </details>
 
 My hope is that all this gives someone an idea of what to expect here.

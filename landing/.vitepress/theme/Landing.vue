@@ -132,6 +132,32 @@ ul {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
 }
+
+.airmash-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: rgba(107, 189, 107, 0.1);
+  border: 2px solid rgba(107, 189, 107, 0.3);
+  border-radius: 8px;
+  text-decoration: none;
+  color: #6bbd6b;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+
+.airmash-link:hover {
+  background: rgba(107, 189, 107, 0.2);
+  border-color: #6bbd6b;
+  box-shadow: 0 0 20px rgba(107, 189, 107, 0.4);
+  transform: scale(1.05);
+}
+
+.airmash-logo {
+  height: 32px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
 </style>
 
 <style scoped>
