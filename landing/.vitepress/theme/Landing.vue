@@ -166,7 +166,6 @@ ul {
 /* Hero / Header */
 .hero {
   text-align: center;
-  padding-top: 80px;
 }
 
 .logo {
