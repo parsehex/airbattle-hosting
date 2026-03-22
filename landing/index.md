@@ -1,12 +1,8 @@
-This is a love letter to what modern-day Airmash is, what it started as, and a wish to open the next chapter for the whole family.
+<header class="hero">
+	<img src="/assets/air-battle_logo.png" alt="Air-Battle" class="logo" style="margin: auto;" />
+</header>
 
-<div class="callout main-game">
-  <h4>Play on the battle-tested arena:</h4>
-  <a href="https://airmash.rocks" class="airmash-link">
-		<img src="/assets/airmash_logo.png" alt="Airmash" class="airmash-logo" />
-		<span>airmash.rocks</span>
-	</a>
-</div>
+This is a love letter to how Airmash started and the way that it grew, plus a wish to open the next chapter for the whole gang.
 
 <div class="info-grid">
 <div class="left-column">
@@ -124,7 +120,9 @@ I'm clumsier when it comes to putting things together and you're clearly more ex
 
 My hope is that all this gives someone an idea of what to expect here.
 
-Edit 3/22: I've only been tweaking this page so it needs updates.
+Edit 3/22:
+
+I've only been tweaking this page so it needs updates, but I'm going to give it a fresh start down the road.
 
 </div>
 </div>

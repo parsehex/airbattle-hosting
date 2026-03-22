@@ -32,9 +32,13 @@
     <!-- Content layer -->
     <div class="content">
       <div class="card">
-        <header class="hero">
-          <img src="/assets/air-battle_logo.png" alt="Air-Battle" class="logo" style="margin: auto;" />
-        </header>
+        <div class="callout main-game">
+          <h4>Play on the battle-tested arena:</h4>
+          <a href="https://airmash.rocks" class="airmash-link">
+            <img src="/assets/airmash_logo.png" alt="Airmash" class="airmash-logo" />
+            <span>airmash.rocks</span>
+          </a>
+        </div>
 
         <main class="main-content">
           <Content />
@@ -501,21 +505,21 @@ ul {
 }
 
 /* Callout Section */
-.main-content :deep(.callout) {
+.content .card :deep(.callout) {
   border-radius: 12px;
   padding: 12px;
   margin-bottom: 32px;
   text-align: center;
 }
 
-.main-content :deep(.callout h4) {
+.content .card :deep(.callout h4) {
   margin: 0 0 16px;
   color: #fff;
   font-size: 1.1rem;
   letter-spacing: 0.02em;
 }
 
-.main-content :deep(.callout .btn) {
+.content .card :deep(.callout .btn) {
   display: inline-block;
 }
 
