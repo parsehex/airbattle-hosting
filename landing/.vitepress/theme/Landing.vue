@@ -162,6 +162,33 @@ ul {
   height: 32px;
   filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
+
+/* Hero / Header */
+.hero {
+  text-align: center;
+  padding-top: 80px;
+}
+
+.logo {
+  width: 320px;
+  max-width: 80%;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.6));
+}
+
+.tagline {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 48px 0 24px;
+  }
+}
 </style>
 
 <style scoped>
@@ -335,27 +362,6 @@ ul {
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 0 40px 20px;
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-}
-
-/* Hero / Header */
-.hero {
-  text-align: center;
-  padding-top: 80px;
-}
-
-.logo {
-  width: 320px;
-  max-width: 80%;
-  margin-bottom: 16px;
-  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.6));
-}
-
-.tagline {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.6);
-  letter-spacing: 0.05em;
-  margin: 0;
 }
 
 /* Main markdown content area */
@@ -560,9 +566,6 @@ ul {
 
 /* Responsive */
 @media (max-width: 640px) {
-  .hero {
-    padding: 48px 0 24px;
-  }
   .logo {
     width: 240px;
   }
