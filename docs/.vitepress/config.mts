@@ -25,6 +25,7 @@ export default defineConfig({
       }
     }
   },
+  appearance: 'force-dark',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
@@ -40,12 +41,32 @@ export default defineConfig({
     },
     sidebar: [
       {
+        text: 'Getting Started',
         items: [
-          { text: 'Set Up Server', link: '/getting-started' },
-          { text: 'Sharing the Server', link: '/external-sharing' },
-          { text: 'Management Commands', link: '/server/management' },
+          { text: 'Overview', link: '/getting-started' },
+          { text: 'About Air-Battle', link: '/about' },
+          { text: 'Where to Play', link: '/where-to-play' },
+          { text: 'Setting Up', link: '/setup' },
+          { text: 'Hosting a Public Server', link: '/hosting' },
+          { text: 'License Info', link: '/license' },
+          { text: 'What\'s Different', link: '/differences' },
+        ]
+      },
+      {
+        text: 'The Game',
+        items: [
+          { text: 'Aircraft', link: '/game/aircraft' },
+          { text: 'Game Modes', link: '/game/modes' },
+          { text: 'Controls', link: '/game/controls' },
+          { text: 'Upgrades & Items', link: '/game/upgrades' },
+        ]
+      },
+      {
+        text: 'Server Reference',
+        items: [
+          { text: 'Configuration Options', link: '/server/options' },
           { text: 'In-Game Commands', link: '/server/commands' },
-          { text: 'Server Options', link: '/server/options' },
+          { text: 'Management', link: '/server/management' },
         ]
       }
     ],
