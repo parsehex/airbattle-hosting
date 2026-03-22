@@ -502,8 +502,6 @@ ul {
 
 /* Callout Section */
 .main-content :deep(.callout) {
-  background: rgba(107, 189, 107, 0.05);
-  border: 1px solid rgba(107, 189, 107, 0.2);
   border-radius: 12px;
   padding: 12px;
   margin-bottom: 32px;

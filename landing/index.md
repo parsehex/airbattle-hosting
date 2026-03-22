@@ -1,7 +1,7 @@
-This is a love letter to what Airmash is the modern day, what it started as, and a wish to open the next chapter for the whole fam.
+This is a love letter to what modern-day Airmash is, what it started as, and a wish to open the next chapter for the whole family.
 
 <div class="callout main-game">
-  <h4>Play on the tried-and-true battleground at:</h4>
+  <h4>Play on the battle-tested arena:</h4>
   <a href="https://airmash.rocks" class="airmash-link">
 		<img src="/assets/airmash_logo.png" alt="Airmash" class="airmash-logo" />
 		<span>airmash.rocks</span>
@@ -13,7 +13,7 @@ This is a love letter to what Airmash is the modern day, what it started as, and
 
 <div class="action-buttons">
 	<a href="https://game.air-battle.net" class="btn btn-primary" style="display:flex;justify-content:space-between; align-items: center;">
-		<span>#CTF&nbsp;A-B</span>
+		<span>CTF#A-B</span>
 		<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
 	</a>
 	<ServerStatus />
