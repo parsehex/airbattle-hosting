@@ -26,7 +26,7 @@ This is a love letter to how Airmash started and the way that it grew, plus a wi
 <details>
 <summary>tech specs</summary>
 
-`Air-Battle` is made up of three main copied pieces:
+`Air-Battle` is made up of three main pieces that I copied:
 
 - [`airmash-frontend`](https://github.com/airmash-refugees/airmash-frontend) by [airmash-refugees](https://github.com/airmash-refugees/airmash-frontend)
   - Fork: [ab-frontend](https://github.com/parsehex/ab-frontend)
