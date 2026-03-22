@@ -1,88 +1,96 @@
-# Setting Up Airbattle
+# Getting Started
 
-(Work in progress)
+Welcome to Air-Battle! Choose what you're looking for:
 
-## Install NVM / Node.js
+<div class="path-grid">
 
-First, install NVM if you haven't already. See the instructions for your operating system below:
+<a href="/where-to-play" class="path-card">
+  <div class="path-icon">🎮</div>
+  <div class="path-info">
+    <h3>Jump Into a Game</h3>
+    <p>Find a server and start playing right now</p>
+  </div>
+</a>
 
-::: details Windows
-Download and run the latest `nvm-setup.exe` from [nvm-windows](https://github.com/coreybutler/nvm-windows/releases).
-:::
+<a href="/setup" class="path-card">
+  <div class="path-icon">🏠</div>
+  <div class="path-info">
+    <h3>Run a Server for Friends</h3>
+    <p>Set up a private server on your own machine</p>
+  </div>
+</a>
 
-::: details Linux/macOS
-Run <code>curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash</code> in your terminal.
+<a href="/setup#play-solo" class="path-card">
+  <div class="path-icon">🕹️</div>
+  <div class="path-info">
+    <h3>Play by Yourself</h3>
+    <p>Play solo with bots</p>
+  </div>
+</a>
 
-See full/updated instructions on [this page](https://github.com/nvm-sh/nvm#install--update-script)
-:::
+<a href="/hosting" class="path-card">
+  <div class="path-icon">🌐</div>
+  <div class="path-info">
+    <h3>Host a Public Server</h3>
+    <p>Deploy on a VPS with TLS, reverse proxy, and more</p>
+  </div>
+</a>
 
-Now, install Node.js v22 by running the following commands:
+</div>
 
-```bash
-nvm install 22
-nvm use 22
-```
+Already running a server? Check out the [Server Reference](/server/options) for configuration, or the [Management](/server/management) page for day-to-day operations.
 
-## Clone the Repository and Setup
+<style>
+.path-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin: 24px 0;
+}
 
-Clone this repository and its submodules, then navigate into the directory and begin setting up the environment:
+@media (max-width: 640px) {
+  .path-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
-```bash
-git clone --recursive https://github.com/parsehex/airbattle-hosting
-cd airbattle-hosting
-npm install
-```
+.path-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(100, 100, 100, 0.25);
+  text-decoration: none !important;
+  color: inherit !important;
+  transition: all 0.2s ease;
+}
 
-Now, run the setup script to copy the needed files and proceed with the setup:
+.path-card:hover {
+  background: rgba(107, 189, 107, 0.08);
+  border-color: var(--vp-c-brand-1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
 
-```bash
-npm run setup
-```
+.path-icon {
+  font-size: 2rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
 
-## Start the Server
+.path-info h3 {
+  margin: 0 0 4px 0 !important;
+  font-size: 1.05rem;
+  border: none !important;
+  padding: 0 !important;
+}
 
-To start the server, run:
-
-```bash
-npm run start
-```
-
-### Access the Game
-
-You should be able to access the game at [`127.0.0.1:3501`](http://127.0.0.1:3501) in your browser.
-
-To let others join your server, see the [external sharing](./external-sharing.md) guide for more information.
-
-## Running Spatie Bots
-
-You must run the bots separately for now. To start 1 bot, open a new terminal, navigate to the `airbattle-hosting` directory, and run:
-
-```bash
-npm run bots
-```
-
-To join more than 1 bot, add `-- --num=` after the above command. For example, **to run 10 bots**:
-
-```bash
-npm run bots -- --num=10
-```
-
-## Troubleshooting
-
-### `EADDRINUSE`
-
-If you see an error like `EADDRINUSE: address already in use`, there might be instance(s) running in the background.
-
-You can kill them by running one of the following commands:
-
-::: details Windows
-```powershell
-Get-NetTCPConnection -LocalPort 3501 | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force }
-```
-:::
-
-::: details Linux/macOS
-```bash
-kill -9 $(lsof -t -i:3501)
-```
-:::
+.path-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+</style>

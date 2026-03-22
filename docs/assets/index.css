@@ -2,6 +2,13 @@
 
 @config '../../tailwind.config.js';
 
+.custom-block {
+  background-color: rgba(101, 117, 133, 0.75) !important;
+}
+.vp-doc div[class*='language-'] {
+  background-color: rgba(50, 50, 50, 0.75) !important;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -81,7 +88,7 @@
   --vp-c-brand-1: #6bbd6b;
   --vp-c-brand-2: #8ed98e;
   --vp-c-brand-3: #58a658;
-  
+
   --vp-home-hero-name-color: var(--vp-c-brand-1);
   --vp-home-hero-image-filter: drop-shadow(0 0 12px rgba(107, 189, 107, 0.4));
 }

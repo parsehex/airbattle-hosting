@@ -1,6 +1,8 @@
 # Server Management
 
-<!-- this is also a TODO for commands to manage the server -->
+::: info `TODO`
+This page needs updated.
+:::
 
 There are a few commands to help manage the server. To run any of them, first open a terminal and navigate to the `airbattle-hosting` directory:
 
