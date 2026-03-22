@@ -1,4 +1,4 @@
-This is an expansion on what I've been working on for about a year: making modern-day Airmash more accessible for more players to enjoy and hack on.
+This is a love letter to what Airmash is the modern day, what it started as, and a wish to open the next chapter for the whole fam.
 
 <div class="callout main-game">
   <h4>Play on the tried-and-true battleground at:</h4>
@@ -28,9 +28,9 @@ This is an expansion on what I've been working on for about a year: making moder
 <div class="right-column">
 
 <details>
-<summary>What is this?</summary>
+<summary>tech specs</summary>
 
-The goal with `Air-Battle` is to combine and modernize the parts that make up modern-day Airmash:
+`Air-Battle` is made up of three main copied pieces:
 
 - [`airmash-frontend`](https://github.com/airmash-refugees/airmash-frontend) by [airmash-refugees](https://github.com/airmash-refugees/airmash-frontend)
   - Fork: [ab-frontend](https://github.com/parsehex/ab-frontend)
@@ -124,7 +124,9 @@ I'm clumsier when it comes to putting things together and you're clearly more ex
 
 My hope is that all this gives someone an idea of what to expect here.
 
+Edit 3/22: I've only been tweaking this page so it needs updates.
+
 </div>
 </div>
 
--- swizzin / orca / garbagepatchkid / etcetc / [u/n_airmash](https://reddit.com/u/n_airmash/)
+-- swizzin / orca / garbagepatchkid / etc / [u/n_airmash](https://reddit.com/u/n_airmash/)
