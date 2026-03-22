@@ -48,4 +48,4 @@ Best way to reach out right now:
 
 Thanks for taking an interest in the project.
 
-> Yes, this is AI-written. [Want to read the raw one?](https://github.com/parsehex/airbattle-hosting/blob/main/dev-docs/about.md)
+> Yes, this is AI-written. [Want to read the raw one?](https://github.com/parsehex/airbattle-hosting/blob/main/dev-notes/about.md)
