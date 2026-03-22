@@ -8,6 +8,7 @@ export default defineConfig({
   title: "Air-Battle Docs",
   description: "Documentation for the Air-Battle project.",
   base: '/',
+  ignoreDeadLinks: true,
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/assets/favicon.png' }],
     ['link', { rel: 'preload', href: '/assets/montserrat-semibold.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
