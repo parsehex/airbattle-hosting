@@ -127,4 +127,13 @@ I've only been tweaking this page so it needs updates, but I'm going to give it 
 </div>
 </div>
 
--- swizzin / orca / garbagepatchkid / etc / [u/n_airmash](https://reddit.com/u/n_airmash/)
+<section class="about-me-blurb">
+  <p class="about-me-kicker">Who I am</p>
+  <p>
+    I am <a href="https://parsehex.github.io/" target="_blank" rel="noopener noreferrer">parsehex</a>, a longtime player who keeps circling back to this game when life gets noisy.
+    I build web things for work, and Air-Battle is my personal corner to keep learning, shipping, and staying connected to a game I still care about.
+  </p>
+  <p>
+    If this space feels a little rough around the edges, that's intentional. I want it to stay human, experimental, and honest - somewhat like Airmash.
+  </p>
+</section>

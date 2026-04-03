@@ -433,6 +433,29 @@ ul {
   font-size: 0.9em;
 }
 
+.main-content :deep(.about-me-blurb) {
+  margin: 24px 0 28px;
+  padding: 16px 18px;
+  border: 1px solid rgba(107, 189, 107, 0.35);
+  border-radius: 10px;
+  background:
+    linear-gradient(130deg, rgba(107, 189, 107, 0.12), rgba(107, 189, 107, 0.03) 42%, rgba(255, 255, 255, 0.02));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.main-content :deep(.about-me-kicker) {
+  margin: 0 0 8px;
+  color: #9ce29c;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.main-content :deep(.about-me-blurb p:last-child) {
+  margin-bottom: 0;
+}
+
 
 
 /* 2-Column Layout */
