@@ -130,10 +130,8 @@ I've only been tweaking this page so it needs updates, but I'm going to give it 
 <section class="about-me-blurb">
   <p class="about-me-kicker">Who I am</p>
   <p>
-    I am <a href="https://parsehex.github.io/" target="_blank" rel="noopener noreferrer">parsehex</a>, a longtime player who keeps circling back to this game when life gets noisy.
+    I am parsehex / swizzin, a longtime player who keeps circling back to this game when life gets noisy.
     I build web things for work, and Air-Battle is my personal corner to keep learning, shipping, and staying connected to a game I still care about.
   </p>
-  <p>
-    If this space feels a little rough around the edges, that's intentional. I want it to stay human, experimental, and honest - somewhat like Airmash.
-  </p>
+  <!-- twitch streaming - the final "my place" that I need -->
 </section>
