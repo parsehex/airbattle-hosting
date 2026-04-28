@@ -8,13 +8,13 @@ This is a love letter to how Airmash started and the way that it grew, plus a wi
 <div class="left-column">
 
 <div class="action-buttons">
-	<a href="https://game.air-battle.net" class="btn btn-primary" style="display:flex;justify-content:space-between; align-items: center;">
+	<button class="btn btn-primary" disabled title="Offline for now" style="display:flex;justify-content:space-between; align-items: center; cursor: not-allowed; opacity: 0.6;">
 		<span>CTF#A-B</span>
 		<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-	</a>
+	</button>
 	<ServerStatus />
 	<hr />
-	<a href="https://air-battle.net/docs/" class="btn btn-secondary">
+	<a href="https://air-battle.net/docs/" class="vp-raw btn btn-secondary">
 		Docs
 	</a>
 	<small>Work in progress</small>
