@@ -124,6 +124,16 @@ Edit 3/22:
 
 I've only been tweaking this page so it needs updates, but I'm going to give it a fresh start down the road.
 
+----
+
+Edit 4/28/2026:
+
+Life strikes again and I let the `CTF#A-B` game server expire.
+
+This landing site + docs will stay online and might be updated, but mostly serves as one of many flags I've planted - to return to when the time's right.
+
+My username on discord is `parsehex`.
+
 </div>
 </div>
 
