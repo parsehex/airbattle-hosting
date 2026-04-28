@@ -1,0 +1,1 @@
+I want to be fairly upfront that I'm using AI for a lot of heavy lifting, although I initially put together the architecture of the 3 repos on my own because at the time AI really sucked at taking these codebases in, which is no longer the case.

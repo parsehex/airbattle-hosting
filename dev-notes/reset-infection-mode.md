@@ -1,0 +1,1 @@
+The project's predecessor still exists in the frontend, should still be preserved in the other branch, so we should remove refs to infection mode as a clean slate, possibly referring to the git history.
