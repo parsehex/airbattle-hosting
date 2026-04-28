@@ -136,3 +136,4 @@ games.json
 
 ***/.vitepress/dist
 ***/.vitepress/cache
+/.pages-dist

@@ -57,7 +57,7 @@ Duct tape bringing all three pieces together.
 - **One-command setup** — `npm run setup` installs and builds everything
 - **Unified start** — `npm run start` for the server + frontend, `npm run bots` for bots
 - **Electron wrapper** (experimental) — play the game as a desktop app with bots
-- **Documentation site** — this site, at [docs.air-battle.net](https://docs.air-battle.net)
+- **Documentation site** — this site, at [air-battle.net/docs](https://air-battle.net/docs)
 
 <a href="https://github.com/parsehex/airbattle-hosting/commits/main" class="commits-link" target="_blank">
   📜 Full commit history

@@ -7,12 +7,12 @@ import { fileURLToPath, URL } from 'node:url'
 export default defineConfig({
   title: "Air-Battle Docs",
   description: "Documentation for the Air-Battle project.",
-  base: '/',
+  base: '/docs/',
   ignoreDeadLinks: true,
   head: [
-    ['link', { rel: 'icon', type: 'image/png', href: '/assets/favicon.png' }],
-    ['link', { rel: 'preload', href: '/assets/montserrat-semibold.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
-    ['link', { rel: 'preload', href: '/assets/montserrat-bold.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
+    ['link', { rel: 'icon', type: 'image/png', href: '/docs/assets/favicon.png' }],
+    ['link', { rel: 'preload', href: '/docs/assets/montserrat-semibold.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
+    ['link', { rel: 'preload', href: '/docs/assets/montserrat-bold.woff2', as: 'font', type: 'font/woff2', crossorigin: '' }],
   ],
   vite: {
     plugins: [
@@ -30,8 +30,8 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Docs Home', link: '/' },
-      { text: 'Main Site', link: 'https://air-battle.net' },
+      { text: 'Docs Home', link: '/docs/' },
+      { text: 'Main Site', link: '/' },
     ],
     lastUpdated: {
       text: 'Last Updated',

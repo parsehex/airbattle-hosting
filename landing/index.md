@@ -14,7 +14,7 @@ This is a love letter to how Airmash started and the way that it grew, plus a wi
 	</a>
 	<ServerStatus />
 	<hr />
-	<a href="https://docs.air-battle.net" class="btn btn-secondary">
+	<a href="https://air-battle.net/docs/" class="btn btn-secondary">
 		Docs
 	</a>
 	<small>Work in progress</small>
@@ -37,7 +37,7 @@ This is a love letter to how Airmash started and the way that it grew, plus a wi
 
 Full A-B project: [`parsehex/airbattle-hosting`](https://github.com/parsehex/airbattle-hosting)
 
-Read more here: [About Air-Battle](https://docs.air-battle.net/about)
+Read more here: [About Air-Battle](https://air-battle.net/docs/about)
 
 </details>
 

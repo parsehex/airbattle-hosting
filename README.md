@@ -10,7 +10,7 @@ This uses the following repos:
 
 ## Setup
 
-> Please also see the [Getting Started](https://docs.air-battle.net/getting-started) page for the most up-to-date instructions.
+> Please also see the [Getting Started](https://air-battle.net/docs/getting-started) page for the most up-to-date instructions.
 
 1. Install nvm and node 22
    - Windows: Download and run the latest `nvm-setup.exe` from [nvm-windows](https://github.com/coreybutler/nvm-windows/releases)

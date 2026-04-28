@@ -24,7 +24,8 @@
     "docs:preview": "vitepress preview docs",
     "landing:dev": "vitepress dev landing",
     "landing:build": "vitepress build landing",
-    "landing:preview": "vitepress preview landing"
+    "landing:preview": "vitepress preview landing",
+    "pages:build": "rm -rf .pages-dist && npm run landing:build -- --outDir .pages-dist && npm run docs:build -- --outDir .pages-dist/docs"
   },
   "keywords": [],
   "author": "",
